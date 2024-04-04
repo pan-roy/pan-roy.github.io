@@ -30,4 +30,4 @@ In development.
         <param name='language' value='en-US' />
     </object></div>
 <script
-    type='text/javascript'>                    var divElement = document.getElementById('viz1712195096296'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width = '1460px'; vizElement.style.height = '1107px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+    type='text/javascript'>                    var divElement = document.getElementById('viz1712195096296'); var vizElement = divElement.getElementsByTagName('object')[0]; vizElement.style.width = '730px'; vizElement.style.height = '553px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
