@@ -5,37 +5,41 @@ categories: [Showcase, Data Retrieval and Upload]
 tags: [data retrieval, introduction]     # TAG names should always be lowercase
 ---
 
-## Welcome!
+Background:  
 
-Testing.  
-In development.
+Accountants manually retrieve data for further processing as part of regular duties. Data, whether it be in the form of transaction listings, journal listings, financial statements or trial balances etc., is subsequently used as input for further calculations and then presented either as independent reports or uploaded back into the accounting system. First step towards optimization of existing procedures is automated data extraction.  
 
-<div class='tableauPlaceholder' id='viz1712195096296' style='position: relative; width: 100%; height: 100%;'><noscript><a href='#'><img
-                alt='Overview (LM) '
-                src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;CallCenterDashboardRWFD_17119622038700&#47;OverviewLM&#47;1_rss.png'
-                style='border: none; width: 100%; height: 100%;' /></a></noscript><object class='tableauViz' style='display:none; width: 100%; height: 100%;'>
-        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-        <param name='embed_code_version' value='3' />
-        <param name='site_root' value='' />
-        <param name='name' value='CallCenterDashboardRWFD_17119622038700&#47;OverviewLM' />
-        <param name='tabs' value='no' />
-        <param name='toolbar' value='yes' />
-        <param name='static_image'
-            value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;CallCenterDashboardRWFD_17119622038700&#47;OverviewLM&#47;1.png' />
-        <param name='animate_transition' value='yes' />
-        <param name='display_static_image' value='yes' />
-        <param name='display_spinner' value='yes' />
-        <param name='display_overlay' value='yes' />
-        <param name='display_count' value='yes' />
-        <param name='language' value='en-US' />
-    </object></div>
-<script
-    type='text/javascript'>                    
-    var divElement = document.getElementById('viz1712195096296'); 
-    var vizElement = divElement.getElementsByTagName('object')[0]; 
-    vizElement.style.width = '100%'; 
-    vizElement.style.height = '100%'; 
-    var scriptElement = document.createElement('script'); 
-    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; 
-    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-</script>
+{insert accounting examples – one from Eightcap, one from RSM}  
+
+Goal:  
+
+Current goal: to create script that automatically extracts financial data under concern from accounting system and setup initial authentication procedures to facilitate this.
+Xero, one of the more popular cloud-based accounting software options, will be used for demonstration purposes given availability of detailed documentation regarding accounting APIs. Note that given proper API access, along with the proper authentication setup, the logic utilized here can be replicated across different accounting environments.  
+
+{insert Xero APIs webpage and link}  
+
+Actions:  
+
+Assumptions: existing Xero account, local Python interpreter  
+
+Step 1: Setup OAuth between computer and Xero for unhindered access.  
+
+{insert link to OAuth tutorial, sample scripts, process screenshots}  
+
+Step 2: Define API scope depending on data to retrieve. E.g. journals listing, trial balance, PnL.  
+
+{insert Xero interface samples}  
+
+Step 3: Define parameters. E.g. dates, accounts, batches.  
+
+{insert Xero interface samples}  
+
+Step 4: Manually run script on demand, or schedule via Windows Task Scheduler.  
+
+{demonstrate Task Scheduler interface setup}  
+
+Outcome:  
+
+Automated JSON data inflows to be used as entry point for further optimization/automation.  
+
+{insert screenshots of JSON output}
