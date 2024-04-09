@@ -1,5 +1,5 @@
 ---
-title: Introduction - Data Retrieval and Upload
+title: Data Retrival via Xero API
 date: 2024-03-27 21:26:01 +1100
 categories: [Showcase, Data Retrieval and Upload]
 tags: [data retrieval, introduction]     # TAG names should always be lowercase
