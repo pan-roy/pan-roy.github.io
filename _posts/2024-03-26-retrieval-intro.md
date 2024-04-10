@@ -17,23 +17,23 @@ For instance, what if we had a report that took in data from an Excel table. How
 ![Sample data](assets/data_retrieval2.png)
 *Simplified data example*
 
-Automated reporting and analytics require input data to be available in the first place - models will be rendered useless if no data was fed in. Therefore, the first step towards our analytics setup would be automated data extraction. System API calls usually result in JSON data returned, which would be our starting point.
+Automated reporting and analytics require input data to be available in the first place - models will be rendered useless if no data was fed in. Therefore, the first step towards our analytics setup would be automated data extraction. System API calls usually result in JSON data being returned, which would serve as our starting point.
 
 ![Sample JSON](assets/data_retrieval4.png)
 *JSON example*
 
 ## Goal:
 
-Our current goal is to create a Python script that automatically extracts financial data from an accounting system and setup the relevant initial authentication procedures required.
+Our current goal is to create a Python script that automatically extracts financial data from an accounting system and sets up the relevant initial authentication procedures required.
 
-Xero, one of the more popular cloud-based accounting software solutions, will be used this demonstration given its availability of API documentation. Note that with the proper API access setup, logic utilized here would be applicable to other accounting environments, as long as documentation and support from IT is present.
+Xero, one of the more popular cloud-based accounting software solutions, will be used this in demonstration given its availability of API documentation. Note that with the proper API access setup, the logic used here could be applied to other accounting environments, as long as documentation and/or support from IT are present.
 
 Visit the [_Xero Main_](https://www.xero.com/au/) and [_Xero API_](https://developer.xero.com/documentation/api/accounting/overview) pages here.
 
 ![Sample Xero](assets/data_retrieval3.png)
 *Xero sample company*
 
-## Actions:  
+## Steps:
 
 **Requirements**: existing Xero account, local Python interpreter, Windows, basic Python knowledge (though explanations will be provided).
 
@@ -43,9 +43,9 @@ Assuming that you have registered a Xero account with either the default demo co
 
 Click [here](https://www.youtube.com/watch?v=t0DgAMgN8VY&list=WL&index=3) should you be interested in a detailed video tutorial (courtesy of [Edgecate](https://www.youtube.com/@edgecate)).
 
-Assuming Python has already been installed, we will need to install the relevant package dependencies required for our script to run. It is recommended that you create a virtual environment for easier dependency management.
+Assuming Python is installed, we will need to install the relevant package dependencies required for our script to run. It is recommended that you create a virtual environment for easier dependency management.
 
-To create a virtual environment, open a PowerShell terminal and navigate to the environment you wish to setup your scripts via the ```cd``` command. Example:
+To create a virtual environment, open a PowerShell terminal and navigate to the directory you wish to setup your scripts via the ```cd``` command. Example:
 
 ```powershell
 cd C:\Users\roypa\Scripts
@@ -57,19 +57,19 @@ Use the following command to create a virtual environment. This will prevent con
 python -m venv "INSERT_NAME_HERE"
 ```
 
-You can then activate the virtual environment via the ```activate``` file within the newly created environment folder. Replace the example path below with yours and press Enter:
+You can then activate the virtual environment via the ```activate``` file within the newly created environment folder. Replace the example's path below with yours and press Enter. You should see the virtual environment show up as a  prefix in your terminal command line once done.
 
 ```powershell
 C:\Users\roypa\Scripts\reportenv\Scripts\activate
 ```
 
-Assuming ```pip``` is installed by default along with Python, enter the following command to install required dependencies. Should you get any errors regarding missing dependencies while scripting later on, you can use ```pip``` to install them as well.
+Assuming ```pip``` is installed by default along with Python, enter the following command to install required dependencies. Should you run into any errors regarding missing dependencies while running scripts later on, you can use ```pip``` to install them as well.
 
 ```powershell
 pip install requests
 ```
 
-Use ```pip list``` to check whether installation is successful. Sample output on my end, note that yours will have much less content:
+Use ```pip list``` command to check whether installation is successful. Below is sample output on my end, note that yours will have much less content:
 
 ```
 (reportenv) PS C:\Users\roypa\Scripts> pip list
@@ -217,11 +217,11 @@ XeroRefreshToken(old_tokens[1])
 # XeroRequests()
 ```
 
-First we will need to login to [Xero Developer](https://developer.xero.com) and link our Python script. Refer the images below to create a new app:
+First we will need to login to [Xero Developer](https://developer.xero.com). Refer the image below to create a new app:
 
 ![Xero Developer1](assets/data_retrieval5.png)
 
-Choose any name for your app. Select "Web app" for integration type. Type "https://placeholder.com/" as the company URL for now. Type "https://xero.com/" as the redirect URL.
+Choose any name for your app. Select "Web app" for integration type. Type _"https://placeholder.com/"_ as the company URL. Type _"https://xero.com/"_ as the redirect URL.
 
 ![Xero Developer2](assets/data_retrieval6.png)
 
