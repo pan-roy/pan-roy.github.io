@@ -23,9 +23,7 @@ Our current goal is to create a Python script that automatically extracts financ
 
 Xero, one of the more popular cloud-based accounting software solutions, will be used this demonstration given its availability of API documentation. Note that with the proper API access setup, logic utilized here would be applicable to other accounting environments, as long as documentation and support from IT is present.
 
-_Xero Main Page_: https://www.xero.com/au/
-
-_Xero API_: https://developer.xero.com/documentation/api/accounting/overview
+Visit the [_Xero Main_](https://www.xero.com/au/) and [_Xero API_](https://developer.xero.com/documentation/api/accounting/overview) pages here.
 
 ![Sample Xero](assets/data_retrieval3.png)
 *Xero sample*
