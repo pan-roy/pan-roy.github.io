@@ -7,9 +7,13 @@ tags: [data retrieval, introduction]     # TAG names should always be lowercase
 
 ## Background:  
 
-Accountants usually manually retrieve data for further processing. Data, whether it be in the form of transaction listings, journal listings, financial statements or trial balances etc., is subsequently used as input for further calculations and then presented either as independent reports or uploaded back into the accounting system. First step towards optimization of existing procedures is automated data extraction.  
+Accountants usually perform manual data retrieval for further processing. Data, whether it be in the form of various transaction listings or financial statements, is used as input for further calculations and subsequently either presented as independent reports or uploaded back into the accounting system.  
+
+Therefore, the first step towards procedure optimization would naturally be automated data extraction.  
 
 {insert accounting examples – one from Eightcap, one from RSM}  
+
+![Audit testing](assets/data_retrieval1.png)
 
 ## Goal:  
 
