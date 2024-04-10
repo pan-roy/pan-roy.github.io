@@ -5,24 +5,30 @@ categories: [Showcase, Data Retrieval and Upload]
 tags: [data retrieval, introduction]     # TAG names should always be lowercase
 ---
 
-## Background:  
+## Background:
 
-Accountants usually perform manual data retrieval for further processing. Data, whether it be in the form of various transaction listings or financial statements, is used as input for further calculations and subsequently either presented as independent reports or uploaded back into the accounting system.  
+Accountants usually perform manual data retrieval for further processing. Data, whether it be in the form of various transaction listings or financial statements, is used as input for further calculations and subsequently presented as independent reports or uploaded back into the accounting system (e.g. journal entries). Should there be numerous systems and sources involved, accountants would need to dedicate time towards manual data extraction in the absence of custom integrations or interconnected ERP systems.
 
-Therefore, the first step towards procedure optimization would naturally be automated data extraction.   
+Automated reporting and analytics require input data to be available in the first place - models will be rendered useless if no data was fed in. Therefore, the first step towards our analytics setup would be automated data extraction.
 
 ![Sample report](assets/data_retrieval1.png)
-*Sample report*
+*Simplified report example*
 
 ![Sample data](assets/data_retrieval2.png)
-*Sample data*
+*Simplified data example*
 
-## Goal:  
+## Goal:
 
-Current goal: to create script that automatically extracts financial data under concern from accounting system and setup initial authentication procedures to facilitate this.
-Xero, one of the more popular cloud-based accounting software options, will be used for demonstration purposes given availability of detailed documentation regarding accounting APIs. Note that given proper API access, along with the proper authentication setup, the logic utilized here can be replicated across different accounting environments.  
+Our current goal is to create a Python script that automatically extracts financial data from an accounting system and setup the relevant initial authentication procedures required.
 
-{insert Xero APIs webpage and link}  
+Xero, one of the more popular cloud-based accounting software solutions, will be used this demonstration given its availability of API documentation. Note that with the proper API access setup, logic utilized here would be applicable to other accounting environments, as long as documentation and support from IT is present.
+
+_Xero Main Page_: https://www.xero.com/au/
+
+_Xero API_: https://developer.xero.com/documentation/api/accounting/overview
+
+![Sample Xero](assets/data_retrieval3.png)
+*Xero sample*
 
 ## Actions:  
 
