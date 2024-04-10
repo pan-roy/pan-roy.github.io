@@ -47,25 +47,25 @@ Assuming Python has already been installed, we will need to install the relevant
 
 To create a virtual environment, open a PowerShell terminal and navigate to the environment you wish to setup your scripts via the ```cd``` command. Example:
 
-```PowerShell
+```powershell
 cd C:\Users\roypa\Scripts
 ```
 
 Use the following command to create a virtual environment. This will prevent conflicts should you choose to work on other Python projects. Do not include the placeholder angle brackets below:
 
-```PowerShell
+```powershell
 python -m venv <INSERT_NAME>
 ```
 
 You can then activate the virtual environment via the ```activate``` file within the newly created environment folder. Replace the example path below with yours and press Enter:
 
-```PowerShell
+```powershell
 C:\Users\roypa\Scripts\reportenv\Scripts\activate
 ```
 
 Assuming ```pip``` is installed by default along with Python, enter the following command to install required dependencies. Should you get any errors regarding missing dependencies while scripting later on, you can use ```pip``` to install them as well.
 
-```PowerShell
+```powershell
 pip install requests
 ```
 
@@ -98,7 +98,7 @@ xlwings                   0.31.1
 
 The following Python script will assist us in establishing a secure long-term connection without the need of frequent logins. However, prep work is required before the script can be used.
 
-```Python
+```python
 import requests
 import webbrowser
 import base64
