@@ -12,8 +12,10 @@ Accountants usually perform manual data retrieval for further processing. Data, 
 Therefore, the first step towards procedure optimization would naturally be automated data extraction.   
 
 ![Sample report](assets/data_retrieval1.png)
+*Sample report*
 
 ![Sample data](assets/data_retrieval2.png)
+*Sample data*
 
 ## Goal:  
 
