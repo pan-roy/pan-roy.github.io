@@ -51,10 +51,10 @@ To create a virtual environment, open a PowerShell terminal and navigate to the 
 cd C:\Users\roypa\Scripts
 ```
 
-Use the following command to create a virtual environment. This will prevent conflicts should you choose to work on other Python projects. Do not include the placeholder angle brackets below:
+Use the following command to create a virtual environment. This will prevent conflicts should you choose to work on other Python projects. Do not include the placeholder quotation marks below:
 
 ```powershell
-python -m venv <INSERT_NAME>
+python -m venv "INSERT_NAME_HERE"
 ```
 
 You can then activate the virtual environment via the ```activate``` file within the newly created environment folder. Replace the example path below with yours and press Enter:
