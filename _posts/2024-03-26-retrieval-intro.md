@@ -9,13 +9,18 @@ tags: [data retrieval, introduction]     # TAG names should always be lowercase
 
 Accountants usually perform manual data retrieval for further processing. Data, whether it be in the form of various transaction listings or financial statements, is used as input for further calculations and subsequently presented as independent reports or uploaded back into the accounting system (e.g. journal entries). Should there be numerous systems and sources involved, accountants would need to dedicate time towards manual data extraction in the absence of custom integrations or interconnected ERP systems.
 
-Automated reporting and analytics require input data to be available in the first place - models will be rendered useless if no data was fed in. Therefore, the first step towards our analytics setup would be automated data extraction.
+For instance, what if we had a report that took in data from an Excel table. How could we let the table directly pull data from an accounting system?
 
 ![Sample report](assets/data_retrieval1.png)
 *Simplified report example*
 
 ![Sample data](assets/data_retrieval2.png)
 *Simplified data example*
+
+Automated reporting and analytics require input data to be available in the first place - models will be rendered useless if no data was fed in. Therefore, the first step towards our analytics setup would be automated data extraction. We will first start off with data extracted in JSON format.
+
+![Sample JSON](assets/data_retrieval4.png)
+*JSON example*
 
 ## Goal:
 
@@ -26,7 +31,7 @@ Xero, one of the more popular cloud-based accounting software solutions, will be
 Visit the [_Xero Main_](https://www.xero.com/au/) and [_Xero API_](https://developer.xero.com/documentation/api/accounting/overview) pages here.
 
 ![Sample Xero](assets/data_retrieval3.png)
-*Xero sample*
+*Xero sample company*
 
 ## Actions:  
 
