@@ -217,7 +217,7 @@ XeroRefreshToken(old_tokens[1])
 # XeroRequests()
 ```
 
-First we will need to login to [Xero Developer](developer.xero.com) and link our Python script. Refer the images below to create a new app:
+First we will need to login to [Xero Developer](https://developer.xero.com) and link our Python script. Refer the images below to create a new app:
 
 ![Xero Developer1](assets/data_retrieval5.png)
 
