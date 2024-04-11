@@ -5,11 +5,11 @@ categories: [Showcase, Data Retrieval]
 tags: [data retrieval, xero]     # TAG names should always be lowercase
 ---
 
-## Background - How this impacts you
+## How this impacts you
 
-Accountants usually perform manual data retrieval for further processing. Data, whether it be in the form of various transaction listings or financial statements, is used as input for further calculations and subsequently presented as independent reports or uploaded back into the accounting system (e.g. journal entries). Should there be numerous systems and sources involved, accountants would need to dedicate time towards manual data extraction in the absence of custom integrations or interconnected ERP systems.
+Accountants typically manually collect data, like transaction lists or financial statements, for analysis. This data is then used for calculations and creating reports or updating the accounting system with journal entries. When dealing with multiple systems, accountants may spend extra time extracting data if there are no custom integrations or connections between the systems.
 
-For instance, what if we had a report that took in data from an Excel table. How could we enable the table to pull data directly from an accounting system?
+For example, if we have a report that uses data from an Excel table, how could we set it up so the table automatically gets data from the accounting system?
 
 ![Sample report](assets/data_retrieval/data_retrieval1.png)
 *Simplified report example*
@@ -17,45 +17,45 @@ For instance, what if we had a report that took in data from an Excel table. How
 ![Sample data](assets/data_retrieval/data_retrieval2.png)
 *Simplified data example*
 
-Automated reporting and analytics require input data to be available in the first place - models will be rendered useless if no data was fed in. Therefore, the first step towards our analytics setup would be automated data extraction. API calls from accounting applications typically result in JSON data being returned, which would serve as our starting point.
+Automated reporting and analytics rely on having access to input data. Without data, models won't work effectively. So, the initial step in setting up our analytics system would involve automating the extraction of data. Accounting applications usually provide data through API calls, which return JSON data. This JSON data would serve as our foundation for analysis.
 
 ![Sample JSON](assets/data_retrieval/data_retrieval4.png)
 *JSON example*
 
-## Goal - What needs to be done
+## What needs to be done
 
-Our current goal is to create a Python script that automatically extracts financial data from an accounting system and sets up the relevant initial authentication procedures required.
+Our current objective is to develop a Python script that automates the extraction of financial data from an accounting system and establishes the necessary authentication procedures.
 
-Xero, one of the more popular cloud-based accounting software solutions, will be used this in demonstration given its availability of API documentation. Note that with the proper API access setup, the logic used here could be applied to other accounting environments, as long as documentation and/or support from IT are present.
+For demonstration purposes, we'll use Xero, a popular cloud-based accounting software solution, due to its well-documented API. It's worth noting that with the appropriate API access configuration, the approach outlined here could be adapted to other accounting environments, provided that documentation and IT support are available.
 
 Visit the [_Xero Main_](https://www.xero.com/au/) and [_Xero API_](https://developer.xero.com/documentation/api/accounting/overview) pages here.
 
 ![Sample Xero](assets/data_retrieval/data_retrieval3.png)
 *Xero sample company*
 
-## Steps - How it is done
+## What are the steps required?
 
-**Requirements**: existing Xero account, local Python interpreter, Windows, basic Python knowledge (though explanations will be provided).
+**Requirements**: existing Xero account, local Python interpreter, Windows, basic Python knowledge.
 
-Assuming that you have registered a Xero account with either the default demo company or an actual company linked, you will need to establish a long-term connection between your local computer and Xero.
+Assuming you have registered a Xero account, either with the default demo company or a linked actual company, you will need to create a long-term connection between your local computer and Xero.
 
 Click [here](https://www.youtube.com/watch?v=t0DgAMgN8VY&list=WL&index=3) should you be interested in a detailed video tutorial (courtesy of [Edgecate](https://www.youtube.com/@edgecate)).
 
-Assuming Python is installed, you will need to install the relevant package dependencies required for the script to run. It is recommended that you create a virtual environment for easier dependency management.
+To set up your Python environment, ensure Python is installed. Then, install the necessary package dependencies for the script to function. It's advisable to create a virtual environment for better dependency management.
 
-To create a virtual environment, open a PowerShell terminal and navigate to the directory you wish to setup your scripts via the ```cd``` command. For example:
+To create a virtual environment, open a PowerShell terminal and use the ```cd``` command to navigate to the directory where you want to set up your scripts. For example:
 
 ```powershell
 cd C:\Users\roypa\Scripts
 ```
 
-Use the following command to create a virtual environment. This will prevent conflicts should you choose to work on other Python projects. Do not include the placeholder quotation marks below:
+Use the following command to create a virtual environment. This will prevent conflicts if you decide to work on other Python projects. Omit the quotation marks:
 
 ```powershell
 python -m venv "INSERT_NAME_HERE"
 ```
 
-You can then activate the virtual environment via the ```activate``` file within the newly created environment folder. Replace the example's path below with yours and press Enter. You should see the virtual environment show up as a  prefix in your terminal command line once done.
+You can then activate the virtual environment via the ```activate``` file within the newly created environment folder. Replace the example's path below with yours and press Enter. You should see the virtual environment show up as a prefix in your terminal command line once done.
 
 ```powershell
 C:\Users\roypa\Scripts\reportenv\Scripts\activate
@@ -67,7 +67,8 @@ Assuming ```pip``` is installed by default along with Python, enter the followin
 pip install requests
 ```
 
-Use ```pip list``` command to check whether installation is successful. Below is sample output on my end, note that yours will have much less content:
+
+To check if the installation was successful, use the following command: ```pip list```. Your output might resemble the following sample, though it will likely contain less content:
 
 ```
 (reportenv) PS C:\Users\roypa\Scripts> pip list
@@ -106,11 +107,11 @@ Once created, go to _Configuration_ in the sidebar and generate a secret. Store 
 
 ![Xero Developer3](assets/data_retrieval/data_retrieval7.png)
 
-With the required prep work complete, we can now move to the following Python script that will enable us to establish a long-term connection without the need for repeated logins.
+With the necessary preparations completed, we can now proceed with the following Python script, which enables us to establish a long-term connection without repeated logins.
 
-* File path examples have been provided for your reference - please replace them with the corresponding paths on your end.
+* File path examples have been provided for your reference - replace them with the corresponding paths on your system.
 
-* Please also replace the ```client_id``` and ```client_secret``` variable with those obtained in steps above.
+* Replace the ```client_id``` and ```client_secret``` variable with those obtained in steps above.
 
 * You will need to determine the scope variable based on the financial data you are interested in. In this demonstration, we will be pulling the trial balance as at 31 January 2024, which uses ```scope = 'offline_access accounting.reports.read'```. Please refer to the
 [Accounting API Reports](https://developer.xero.com/documentation/api/accounting/reports) page in Xero for other options.
@@ -255,19 +256,19 @@ Once logged in, copy the response page URL back into the Python terminal and pre
 ![token file](assets/data_retrieval/data_retrieval12.png)
 *Token .txt file*
 
-Access tokens are only valid for approximately 10 minutes, after which access will be terminated - similar to how users are automatically logged out after periods of idle activity. However, the ```XeroRequests``` function automatically refreshes the token whenever an API call is made, and thus granting us long-term access.
+Access tokens typically have a limited lifespan of about 10 minutes, similar to automatic logout due to inactivity. However, in the provided script, the ```XeroRequests``` function automatically refreshes the token each time an API call is made, ensuring long-term access.
 
-You will now have to uncomment the ```XeroRequests()``` at the bottom of the script and comment out the ```XeroFirstAuth()``` and ```XeroRefreshToken(old_tokens[1])``` lines above. You will only need to run these 2 functions once to obtain your access token. You will only need ```XeroRequests()``` going forward. Once done, rerun the script to call the designated API. You should obtain a JSON file containing the data in the path designated. In this case, we now have our trial balance as at 31 January 2024.
+To proceed, uncomment the ```XeroRequests()``` call at the bottom of the script and comment out the ```XeroFirstAuth()``` and ```XeroRefreshToken(old_tokens[1])``` lines above. These two functions only need to be run once to obtain the access token. Going forward, only ```XeroRequests()``` will be necessary. Once the changes are made, rerun the script to make the API call. You should receive a JSON file containing the data at the designated path, in this case, the trial balance as of 31 January 2024.
 
 ![JSON file](assets/data_retrieval/data_retrieval13.png)
 
 ![output](assets/data_retrieval/data_retrieval14.png)
 *Sample output*
 
-This script can now be manually run on-demand, or alternatively you can use Windows Task Scheduler to schedule the script to run at certain intervals - this will be covered in future walkthroughs.
+This script can now be manually run on-demand, or alternatively you can use Windows Task Scheduler to schedule the script at certain intervals - this will be covered in future walkthroughs.
 
 ![task scheduler](assets/data_retrieval/data_retrieval15.png)
 
-## Outcome - Our end result
+## Outcome
 
-We now have automated JSON data inflows to be used as our entry point for further optimization/automation. The next step would be to convert JSON files received into a tabular format such as CSV files {TODO: insert link here}, for us to read the data easily and to transform data into useful insights.
+We've successfully automated the inflow of JSON data, which serves as our starting point for further optimization and automation. The next step involves converting the received JSON files into a tabular format, such as CSV files, for easier data interpretation and transformation into actionable insights. For guidance on converting JSON to CSV, refer to this link {TODO: insert link here}.

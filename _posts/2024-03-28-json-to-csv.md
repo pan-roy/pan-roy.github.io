@@ -5,11 +5,11 @@ categories: [Showcase, Data Retrieval]
 tags: [data retrieval, json]     # TAG names should always be lowercase
 ---
 
-## Background - How this impacts you
+## How this impacts you
 
-In the prior walkthrough {TODO: insert link here}, we have extracted data from Xero in the form of JSON files. However, JSON files utilize a nested dictionary data structure, where information is kept in key value pairs. Values can also further extend into new key value pairs. This inevitably renders it difficult for accountants to use such data, as we are more familiar with tabular data (e.g. Excel).
+In our prior walkthrough {TODO: insert link here}, data extraction from Xero was performed resulting in JSON format files. JSON files employ a hierarchical structure consisting of nested dictionaries, organizing data into key-value pairs, with potential expansion into additional key-value pairs. This inherent structure presents challenges for accountants accustomed to tabular formats such as Excel.
 
-Looking at the top portion of the Xero trial balance obtained previously, you will notice that data is stored via nested dictionaries. We will need to normalize or flatten the JSON data for it to be of use.
+Upon examination of the top segments of our Xero trial balance, it becomes evident that data is organized within nested dictionaries. To facilitate usability, it is imperative to normalize or flatten the JSON data structure.
 ```json
 {
 
@@ -202,30 +202,30 @@ Looking at the top portion of the Xero trial balance obtained previously, you wi
         }
 ```
 
-## Goal - What needs to be done
+## What needs to be done?
 
-Our current goal is to flatten the JSON data above into a tabular format that can be consumed for further analysis. The transformed data should more or less resemble the following table.
+Our objective is to transform the JSON data into a tabular format suitable for subsequent analysis. The desired outcome is to present the data in a structured table similar to the following:
 
 ![Sample data](assets/data_retrieval/data_retrieval2.png)
 *Simplified data example*
 
-## Steps - How it is done
+## What are the steps required?
 
 **Requirements**: local Python interpreter, basic Python knowledge.
 
 JSON files require examination on a case-by-case basis, though the overall method will be the same.
 
-For this particular example, we will have to analyze the data structure level by level to determine what we want.
+For this particular example, a methodical approach is necessary to flatten the data into a tabular format. Let's go through this step-by-step:
 
-We are interested in 1st level ```"Reports"```, 2nd level  ```"Rows"```, 3rd level ```"Rows"```, 4th level ```"Cells"```, 5th level ```"Value"```. If you follow this path, you can see that the first value would be ```"Sales (200)"```, which is the first general ledger account. You can then see that **for each item** under ```"Cells"``` at the 4th level, the data under concern is always stored in ```"Value"```.
+We will navigate to 1st level ```"Reports"```, 2nd level  ```"Rows"```, 3rd level ```"Rows"```, 4th level ```"Cells"```, 5th level ```"Value"```. Should you follow this path, you can see that the first value would be ```"Sales (200)"```, which is the first general ledger account. You can then see that **for each item** under ```"Cells"``` at the 4th level, the data under concern is always stored in ```"Value"```.
 
 * Therefore, the solution would be to loop through each item at the 4th level ```"Cells"``` and extract all ```"Value"``` values.
 
-* However, note that at the 3rd level ```"Rows"```, the first item where ```"RowType": "Header"``` is does not contain a ```"Row"``` key at he 4th level - it does contain our headers though we will ignore them in this demonstration. As a result, we will need to introduce an ```IF``` logic check to exclude this header section.
+* However, note that at the 3rd level ```"Rows"```, the first item where ```"RowType": "Header"``` lies does not contain a ```"Rows"``` key at he 4th level - it does contain our headers though we will ignore them in this demonstration. As a result, we will need to introduce an ```IF``` logic check to exclude this header section.
 
 * We can then store all values within a Python list via an ```append()``` method, and write all rows to a blank CSV file.
 
-* Please change the file paths below into the applicable ones on your end.
+* Please replace the file paths below with the applicable ones on your system.
 
 ```python
 import json
@@ -263,12 +263,12 @@ If done correctly, you should be able to generate a CSV file displaying the foll
 
 ![output](assets/json_to_csv/json_csv1.png)
 
-If we compare the CSV output directly with Xero's Trial Balance function, you will see they match without issues.
+If we compare the CSV output directly with Xero's Trial Balance function, you will see that they align seamlessly.
 
 ![comparison](assets/json_to_csv/json_csv2.png)
 
-## Outcome - Our end result
+## Outcome
 
-Our transformed tabular data can then either be configured to flow directly into other Excel workpapers as data inputs or into a corporate network drive as backup. There are many options that branch out from here, from automated reporting snapshots to self-refreshing Tableau dashboards or centralized data repositories etc - not to mention that some can bypass the need for CSV conversion entirely and directly use JSON data.
+The transformed tabular data offers versatile integration options, such as direct incorporation into Excel workpapers or backup storage in a corporate network drive. From this point, various possibilities emerge, including automated reporting snapshots, self-refreshing Tableau dashboards, and centralized data repositories. 
 
-Our next example will use what we have we have learned in a different scenario, where we extract transaction listings instead {TODO: insert link here}.
+In our next example, we will apply the acquired knowledge to a different scenario, focusing on extracting transaction listings [TODO: provide hyperlink].
