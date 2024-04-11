@@ -259,14 +259,14 @@ Once logged in, copy the response page URL back into the Python terminal and pre
 
 Access tokens are only valid for approximately 10 minutes, after which access will be terminated - similar to how users are automatically logged out after periods of idle activity. However, the ```XeroRequests``` function automatically refreshes the token whenever an API call is made, and thus granting us long-term access.
 
-You will now have to uncomment the ```XeroRequests()``` at the bottom of the script and comment out the ```XeroFirstAuth()``` and ```XeroRefreshToken(old_tokens[1])``` lines above. You will only need to run these 2 functions once to obtain your access token. You will only need ```XeroRequests()``` going forward. Once done, rerun the script to call the designated API. You should obtain a JSON file containing the data requested in the path designated.
+You will now have to uncomment the ```XeroRequests()``` at the bottom of the script and comment out the ```XeroFirstAuth()``` and ```XeroRefreshToken(old_tokens[1])``` lines above. You will only need to run these 2 functions once to obtain your access token. You will only need ```XeroRequests()``` going forward. Once done, rerun the script to call the designated API. You should obtain a JSON file containing the data in the path designated.
 
 ![JSON file](assets/data_retrieval13.png)
 
 ![output](assets/data_retrieval14.png)
 *Sample output*
 
-This script can now be manually run on-demand, or alternatively you can use Windows Task Scheduler and PowerShell to schedule the script to run at certain intervals - this will be covered in future posts.
+This script can now be manually run on-demand, or alternatively you can use Windows Task Scheduler to schedule the script to run at certain intervals - this will be covered in future posts.
 
 ![task scheduler](assets/data_retrieval15.png)
 
