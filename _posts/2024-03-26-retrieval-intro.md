@@ -17,7 +17,7 @@ For instance, what if we had a report that took in data from an Excel table. How
 ![Sample data](assets/data_retrieval2.png)
 *Simplified data example*
 
-Automated reporting and analytics require input data to be available in the first place - models will be rendered useless if no data was fed in. Therefore, the first step towards our analytics setup would be automated data extraction. System API calls usually result in JSON data being returned, which would serve as our starting point.
+Automated reporting and analytics require input data to be available in the first place - models will be rendered useless if no data was fed in. Therefore, the first step towards our analytics setup would be automated data extraction. API calls from accounting applications usually result in JSON data being returned, which serves as our starting point.
 
 ![Sample JSON](assets/data_retrieval4.png)
 *JSON example*
@@ -96,7 +96,28 @@ websocket-client          1.7.0
 xlwings                   0.31.1
 ```
 
-The following Python script will assist us in establishing a secure long-term connection without the need of frequent logins. However, prep work is required before the script can be used.
+First we will need to login to [Xero Developer](https://developer.xero.com). Refer the image below to create a new app:
+
+![Xero Developer1](assets/data_retrieval5.png)
+
+Choose any name for your app. Select "Web app" for integration type. Type _"https://placeholder.com/"_ as the company URL. Type _"https://xero.com/"_ as the redirect URL.
+
+![Xero Developer2](assets/data_retrieval6.png)
+
+Once created, go to Configuration in the sidebar and generate a secret. Store the client ID and secret in a .txt file for later use.
+
+![Xero Developer3](assets/data_retrieval7.png)
+
+With the required prep work complete, we can now move to the following Python script which will enable us to establish a secure long-term connection without the need of frequent logins.
+
+* In the script, file path examples have been provided for your reference - please replace them with the corresponding paths on your end.
+
+* Please also replace the ```client_id``` and ```client_secret``` variable with those obtained in steps above.
+
+* You will need to determine the scope variable based on the financial data you are interested in. In this demonstration, we will be pulling the trial balance as at 31 January 2024, which uses ```scope = 'offline_access accounting.reports.read'```. Please refer to the
+[Accounting API Reports](https://developer.xero.com/documentation/api/accounting/reports) page in Xero for the other options available.
+
+* Within the ```XeroRequests``` function below, you will notice that there is a ```get_url``` local variable. Refer to the API documentation in the prior bullet point above for the relevant URLs. This relates to the endpoint which will determine what action would be taken and what input parameters are for the content requested (e.g. period end date for trial balances). In this instance we will be using ```'https://api.xero.com/api.xro/2.0/Reports/TrialBalance?Date=2024-01-31'```, where ```TrialBalance``` is the item requested, and ```Date=2024-01-31``` is the input parameter for our report date.
 
 ```python
 import requests
@@ -188,7 +209,7 @@ def XeroRefreshToken(refresh_token):
 
 # 6.2 Call the API
 def XeroRequests():
-    old_refresh_token = open(<INSERT_FILE_PATH>, 'r').read()
+    old_refresh_token = open('C:/Users/roypa/Downloads/refresh_token.txt', 'r').read()
     new_tokens = XeroRefreshToken(old_refresh_token)
     xero_tenant_id = XeroTenants(new_tokens[0])
 
@@ -205,7 +226,7 @@ def XeroRequests():
     json_response = response.json()
     print(json_response)
 
-    xero_output = open(<INSERT_FILE_PATH>, 'w')
+    xero_output = open('C:/Users/roypa/Downloads/xero_output.json', 'w')
     xero_output.write(response.text)
     xero_output.close()
 
@@ -217,32 +238,38 @@ XeroRefreshToken(old_tokens[1])
 # XeroRequests()
 ```
 
-First we will need to login to [Xero Developer](https://developer.xero.com). Refer the image below to create a new app:
+![API details](assets/data_retrieval8.png)
+*API details*
 
-![Xero Developer1](assets/data_retrieval5.png)
+After populating the variables above and running the script (via PowerShell etc.), it will direct you to a login page for end-user authorization. Login to your Xero account to obtain access.
 
-Choose any name for your app. Select "Web app" for integration type. Type _"https://placeholder.com/"_ as the company URL. Type _"https://xero.com/"_ as the redirect URL.
+![authorization](assets/data_retrieval9.png)
+*Authorization*
 
-![Xero Developer2](assets/data_retrieval6.png)
+Once logged in, copy the response page URL back into the Python terminal and press Enter to obtain a refreshable access token under the designated folder.
 
-Once created, go to Configuration in the sidebar and generate a secret. Store the secret in a .txt file for later use.
+![authorization page](assets/data_retrieval10.png)
+*Authorization link*
 
-![Xero Developer3](assets/data_retrieval7.png)
+![access token](assets/data_retrieval11.png)
+*Access token*
 
-* Step 2: Define API scope depending on data to retrieve. E.g. journals listing, trial balance, PnL.  
+![token file](assets/data_retrieval12.png)
+*Token .txt file*
 
-{insert Xero interface samples}  
+Access tokens are only valid for around 10 minutes, after which access will be terminated - similar to how users are automatically logged out after periods of idle activity for security purposes. However, the ```XeroRequests``` function automatically refreshes the token whenever an API call is made, and thus granting us long-term access.
 
-* Step 3: Define parameters. E.g. dates, accounts, batches.  
+You will now have to uncomment the ```XeroRequests()``` at the bottom of the script and comment out the ```XeroFirstAuth()``` and ```XeroRefreshToken(old_tokens[1])``` lines above. Once done, rerun the script to call the designated API. You should obtain a JSON file containing the data requested in the path designated.
 
-{insert Xero interface samples}  
+![JSON file](assets/data_retrieval13.png)
 
-* Step 4: Manually run script on demand, or schedule via Windows Task Scheduler.  
+![output](assets/data_retrieval14.png)
+*Sample output*
 
-{demonstrate Task Scheduler interface setup}  
+This script can now be manually run on-demand, or alternatively you can use Windows Task Scheduler and PowerShell to schedule the script to run at certain intervals - this will be cover in subsequent posts.
+
+![task scheduler](assets/data_retrieval15.png)
 
 ## Outcome:  
 
-Automated JSON data inflows to be used as entry point for further optimization/automation.  
-
-{insert screenshots of JSON output}
+We now have automated JSON data inflows to be used as our entry point for further optimization/automation. The next step would be to convert JSON files received into a table-like format such as CSV files {TODO: insert link here}, which can further enable us to transform data into useful insights.
