@@ -5,7 +5,7 @@ categories: [Showcase, Data Retrieval]
 tags: [data retrieval, xero]     # TAG names should always be lowercase
 ---
 
-## Background
+## Background - How this impacts you
 
 Accountants usually perform manual data retrieval for further processing. Data, whether it be in the form of various transaction listings or financial statements, is used as input for further calculations and subsequently presented as independent reports or uploaded back into the accounting system (e.g. journal entries). Should there be numerous systems and sources involved, accountants would need to dedicate time towards manual data extraction in the absence of custom integrations or interconnected ERP systems.
 
@@ -22,7 +22,7 @@ Automated reporting and analytics require input data to be available in the firs
 ![Sample JSON](assets/data_retrieval/data_retrieval4.png)
 *JSON example*
 
-## Goal
+## Goal - What needs to be done
 
 Our current goal is to create a Python script that automatically extracts financial data from an accounting system and sets up the relevant initial authentication procedures required.
 
@@ -33,7 +33,7 @@ Visit the [_Xero Main_](https://www.xero.com/au/) and [_Xero API_](https://devel
 ![Sample Xero](assets/data_retrieval/data_retrieval3.png)
 *Xero sample company*
 
-## Steps
+## Steps - How it is done
 
 **Requirements**: existing Xero account, local Python interpreter, Windows, basic Python knowledge (though explanations will be provided).
 
@@ -268,6 +268,6 @@ This script can now be manually run on-demand, or alternatively you can use Wind
 
 ![task scheduler](assets/data_retrieval/data_retrieval15.png)
 
-## Outcome
+## Outcome - Our end result
 
 We now have automated JSON data inflows to be used as our entry point for further optimization/automation. The next step would be to convert JSON files received into a tabular format such as CSV files {TODO: insert link here}, for us to read the data easily and to transform data into useful insights.

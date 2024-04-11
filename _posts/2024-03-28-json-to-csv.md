@@ -5,7 +5,7 @@ categories: [Showcase, Data Retrieval]
 tags: [data retrieval, json]     # TAG names should always be lowercase
 ---
 
-## Background
+## Background - How this impacts you
 
 In the prior walkthrough {TODO: insert link here}, we have extracted data from Xero in the form of JSON files. However, JSON files utilize a nested dictionary data structure, where information is kept in key value pairs. Values can also further extend into new key value pairs. This inevitably renders it difficult for accountants to use such data, as we are more familiar with tabular data (e.g. Excel).
 
@@ -202,14 +202,14 @@ Looking at the top portion of the Xero trial balance obtained previously, you wi
         }
 ```
 
-## Goal
+## Goal - What needs to be done
 
 Our current goal is to flatten the JSON data above into a tabular format that can be consumed for further analysis. The transformed data should more or less resemble the following table.
 
 ![Sample data](assets/data_retrieval/data_retrieval2.png)
 *Simplified data example*
 
-## Steps
+## Steps - How it is done
 
 **Requirements**: local Python interpreter, basic Python knowledge.
 
@@ -267,8 +267,8 @@ If we compare the CSV output directly with Xero's Trial Balance function, you wi
 
 ![comparison](assets/json_to_csv/json_csv2.png)
 
-## Outcome
+## Outcome - Our end result
 
 Our transformed tabular data can then either be configured to flow directly into other Excel workpapers as data inputs or into a corporate network drive as backup. There are many options that branch out from here, from automated reporting snapshots to self-refreshing Tableau dashboards or centralized data repositories etc - not to mention that some can bypass the need for CSV conversion entirely and directly use JSON data.
 
-Our next example will put what we have we have learned in a different scenario, where we extract transaction / journal listings instead {TODO: insert link here}.
+Our next example will use what we have we have learned in a different scenario, where we extract transaction listings instead {TODO: insert link here}.
