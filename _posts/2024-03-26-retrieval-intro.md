@@ -272,4 +272,4 @@ This script can now be manually run on-demand, or alternatively you can use Wind
 
 ## Outcome:  
 
-We now have automated JSON data inflows to be used as our entry point for further optimization/automation. The next step would be to convert JSON files received into a table-like format such as CSV files {TODO: insert link here}, which will further enable us to transform data into useful insights.
+We now have automated JSON data inflows to be used as our entry point for further optimization/automation. The next step would be to convert JSON files received into a table-like format such as CSV files {TODO: insert link here}, which will enable us to transform data into useful insights.
