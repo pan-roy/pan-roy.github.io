@@ -37,8 +37,6 @@ Visit the [_Xero Main_](https://www.xero.com/au/) and [_Xero API_](https://devel
 
 **Requirements**: existing Xero account, local Python interpreter, Windows, basic Python knowledge (though explanations will be provided).
 
-### **Step 1: Setup OAuth2 between computer and Xero for unhindered access**
-
 Assuming that you have registered a Xero account with either the default demo company or an actual company linked, you will need to establish a long-term connection between your local computer and Xero.
 
 Click [here](https://www.youtube.com/watch?v=t0DgAMgN8VY&list=WL&index=3) should you be interested in a detailed video tutorial (courtesy of [Edgecate](https://www.youtube.com/@edgecate)).
