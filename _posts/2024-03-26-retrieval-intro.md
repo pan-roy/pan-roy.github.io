@@ -1,8 +1,8 @@
 ---
-title: Data Retrieval via Xero API
-date: 2024-03-27 21:26:01 +1100
-categories: [Showcase, Data Retrieval and Upload]
-tags: [data retrieval, introduction]     # TAG names should always be lowercase
+title: Automated Data Retrieval
+date: 2024-03-26 21:26:01 +1100
+categories: [Showcase, 1. Automated Data Retrieval via Xero APIs]
+tags: [data retrieval, xero]     # TAG names should always be lowercase
 ---
 
 ## Background:
