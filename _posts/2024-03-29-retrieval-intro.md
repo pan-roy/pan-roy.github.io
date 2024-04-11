@@ -5,24 +5,24 @@ categories: [Showcase, Data Retrieval]
 tags: [data retrieval, xero]     # TAG names should always be lowercase
 ---
 
-## Background:
+## Background
 
 Accountants usually perform manual data retrieval for further processing. Data, whether it be in the form of various transaction listings or financial statements, is used as input for further calculations and subsequently presented as independent reports or uploaded back into the accounting system (e.g. journal entries). Should there be numerous systems and sources involved, accountants would need to dedicate time towards manual data extraction in the absence of custom integrations or interconnected ERP systems.
 
 For instance, what if we had a report that took in data from an Excel table. How could we enable the table to pull data directly from an accounting system?
 
-![Sample report](assets/data_retrieval1.png)
+![Sample report](assets/data_retrieval/data_retrieval1.png)
 *Simplified report example*
 
-![Sample data](assets/data_retrieval2.png)
+![Sample data](assets/data_retrieval/data_retrieval2.png)
 *Simplified data example*
 
 Automated reporting and analytics require input data to be available in the first place - models will be rendered useless if no data was fed in. Therefore, the first step towards our analytics setup would be automated data extraction. API calls from accounting applications typically result in JSON data being returned, which would serve as our starting point.
 
-![Sample JSON](assets/data_retrieval4.png)
+![Sample JSON](assets/data_retrieval/data_retrieval4.png)
 *JSON example*
 
-## Goal:
+## Goal
 
 Our current goal is to create a Python script that automatically extracts financial data from an accounting system and sets up the relevant initial authentication procedures required.
 
@@ -30,10 +30,10 @@ Xero, one of the more popular cloud-based accounting software solutions, will be
 
 Visit the [_Xero Main_](https://www.xero.com/au/) and [_Xero API_](https://developer.xero.com/documentation/api/accounting/overview) pages here.
 
-![Sample Xero](assets/data_retrieval3.png)
+![Sample Xero](assets/data_retrieval/data_retrieval3.png)
 *Xero sample company*
 
-## Steps:
+## Steps
 
 **Requirements**: existing Xero account, local Python interpreter, Windows, basic Python knowledge (though explanations will be provided).
 
@@ -96,15 +96,15 @@ xlwings                   0.31.1
 
 Now we will need to login to [Xero Developer](https://developer.xero.com) to setup our app in Xero. Refer the image below to create one:
 
-![Xero Developer1](assets/data_retrieval5.png)
+![Xero Developer1](assets/data_retrieval/data_retrieval5.png)
 
 Choose any name for your app. Select "Web app" for integration type. Type _"https://placeholder.com/"_ as the company URL. Type _"https://xero.com/"_ as the redirect URL.
 
-![Xero Developer2](assets/data_retrieval6.png)
+![Xero Developer2](assets/data_retrieval/data_retrieval6.png)
 
 Once created, go to _Configuration_ in the sidebar and generate a secret. Store the client ID and secret in a .txt file for later use.
 
-![Xero Developer3](assets/data_retrieval7.png)
+![Xero Developer3](assets/data_retrieval/data_retrieval7.png)
 
 With the required prep work complete, we can now move to the following Python script that will enable us to establish a long-term connection without the need for repeated logins.
 
@@ -236,38 +236,38 @@ XeroRefreshToken(old_tokens[1])
 # XeroRequests()
 ```
 
-![API details](assets/data_retrieval8.png)
+![API details](assets/data_retrieval/data_retrieval8.png)
 *API details*
 
 After populating the variables above and running the script (via PowerShell etc.), you will be directed to a login page for end-user authorization. Login with your Xero account to obtain access.
 
-![authorization](assets/data_retrieval9.png)
+![authorization](assets/data_retrieval/data_retrieval9.png)
 *Authorization*
 
 Once logged in, copy the response page URL back into the Python terminal and press Enter to obtain a refreshable access token under the designated folder.
 
-![authorization page](assets/data_retrieval10.png)
+![authorization page](assets/data_retrieval/data_retrieval10.png)
 *Authorization link*
 
-![access token](assets/data_retrieval11.png)
+![access token](assets/data_retrieval/data_retrieval11.png)
 *Access token*
 
-![token file](assets/data_retrieval12.png)
+![token file](assets/data_retrieval/data_retrieval12.png)
 *Token .txt file*
 
 Access tokens are only valid for approximately 10 minutes, after which access will be terminated - similar to how users are automatically logged out after periods of idle activity. However, the ```XeroRequests``` function automatically refreshes the token whenever an API call is made, and thus granting us long-term access.
 
-You will now have to uncomment the ```XeroRequests()``` at the bottom of the script and comment out the ```XeroFirstAuth()``` and ```XeroRefreshToken(old_tokens[1])``` lines above. You will only need to run these 2 functions once to obtain your access token. You will only need ```XeroRequests()``` going forward. Once done, rerun the script to call the designated API. You should obtain a JSON file containing the data in the path designated.
+You will now have to uncomment the ```XeroRequests()``` at the bottom of the script and comment out the ```XeroFirstAuth()``` and ```XeroRefreshToken(old_tokens[1])``` lines above. You will only need to run these 2 functions once to obtain your access token. You will only need ```XeroRequests()``` going forward. Once done, rerun the script to call the designated API. You should obtain a JSON file containing the data in the path designated. In this case, we now have our trial balance as at 31 January 2024.
 
-![JSON file](assets/data_retrieval13.png)
+![JSON file](assets/data_retrieval/data_retrieval13.png)
 
-![output](assets/data_retrieval14.png)
+![output](assets/data_retrieval/data_retrieval14.png)
 *Sample output*
 
-This script can now be manually run on-demand, or alternatively you can use Windows Task Scheduler to schedule the script to run at certain intervals - this will be covered in future posts.
+This script can now be manually run on-demand, or alternatively you can use Windows Task Scheduler to schedule the script to run at certain intervals - this will be covered in future walkthroughs.
 
-![task scheduler](assets/data_retrieval15.png)
+![task scheduler](assets/data_retrieval/data_retrieval15.png)
 
-## Outcome:  
+## Outcome
 
-We now have automated JSON data inflows to be used as our entry point for further optimization/automation. The next step would be to convert JSON files received into a table-like format such as CSV files {TODO: insert link here}, which will enable us to transform data into useful insights.
+We now have automated JSON data inflows to be used as our entry point for further optimization/automation. The next step would be to convert JSON files received into a tabular format such as CSV files {TODO: insert link here}, for us to read the data easily and to transform data into useful insights.
