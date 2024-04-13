@@ -299,7 +299,7 @@ Cell B = left({Cell A}, 10) & "." & right({Cell A}, 3)
 
 Cell C = ((({Cell B} / 60) / 60) / 24) + date(1970, 1, 1)
 ```
-Cell C in the formulas above will give you the desired date - note that you need to set the cell format to "Short Date" or any other date formats.
+Cell C in the formulas above will give you the desired date - note that you need to set the cell format to "Short Date" or other date formats.
 
 ![csv output](assets/transactions/transactions4.png)
 
