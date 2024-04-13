@@ -1,5 +1,5 @@
 ---
-title: 4. Automated Manual Journalling
+title: 4. Automated Manual Journalling (RECOMMENDED)
 date: 2024-03-26 21:26:01 +1100
 categories: [Showcase, Data Retrieval and Upload]
 tags: [data upload, xero]     # TAG names should always be lowercase
@@ -221,4 +221,222 @@ The ```convert_json()``` function, as described above, utilizes the pandas libra
 
 Assuming there is a defined table named "input" in the first sheet of our Excel workpaper, the function extracts the journal entries' relevant information such as account code, journal amount, and description. This data is formatted to meet Xero's manual journal requirements, where the journal is posted in the current open period. The function extracts the description from the first row (excluding headers), and adds the journal amount and account code.
 
-The resulting dataframe is converted into a dictionary format using the ```to_dict()``` method, resembling the structure of JSON files. Finally, this converted data can be passed to the ```import_journals()``` function for upload. Refer to the script for further details.
+The resulting dataframe is converted into a dictionary using the ```to_dict()``` method, resembling the structure of JSON files. Finally, this converted data can be passed to the ```import_journals()``` function for upload. Refer to the script for further details.
+
+**Step 4: Create a VBA macro to trigger Python scripts within Excel.**
+
+We now need a frontend for the end-user to input data. Open up PowerShell or any terminal available (e.g. VS Code or PyCharm) and create a new xlwings Excel project via the command ```xlwings quickstart myproject```. You will need to activate your virtual environment first. You can also change the ```myproject``` to any name you would like.
+
+* Once done, you should see a new folder with an Excel .xlsm workbook and a .py file in it. 
+
+* Ignore the .py file for now and open the Excel file. Create a table and assign a defined name for the table "input".
+
+* Add an VBA form button via the "Developer" tab in the top ribbon - you may need to enable it if absent. If so, on the File tab, go to Options > Customize Ribbon. Under Customize the Ribbon and under Main Tabs, select the Developer check box. Rename your button to "Upload Journal" or any other preferred name.
+
+Your workbook should look like this (without the data):
+
+![frontend](assets/manual_journals/manual_journals3.png)
+*Simplified frontend example*
+
+Now we need to setup the VBA macro. Press Alt + F11 to open the VBA editor interface.
+
+You will notice that there are existing modules created by xlwings. Go to Module 1 and copy the first ```SampleCall()``` sample macro, paste the copy below and change the ```.main()``` to the function name you intend on creating later on for the input. In this case, the function will be called ```.upload()```.
+
+```vb
+Public Sub GenerateJSON()
+    mymodule = Left(ThisWorkbook.name, (InStrRev(ThisWorkbook.name, ".", -1, vbTextCompare) - 1))
+    RunPython "import " & mymodule & ";" & mymodule & ".upload()"
+End Sub
+```
+This will direct Excel to search within the .py file previously mentioned for the specified function. Now all we need to is to copy over our script to said .py file. Do not change the .py file's name.
+
+Open the newly created .py file within the xlwings project folder previously ignored. Copy over the contents in our prior Python script into this one. Copy over the dependencies as well. Do not overwrite any pre-existing code in the .py file. The file should resemble the following:
+
+```python
+import requests
+import webbrowser
+import base64
+import xlwings as xw
+import pandas as pd
+
+
+def main():
+    wb = xw.Book.caller()
+    sheet = wb.sheets[0]
+    if sheet["A1"].value == "Hello xlwings!":
+        sheet["A1"].value = "Bye xlwings!"
+    else:
+        sheet["A1"].value = "Hello xlwings!"
+
+
+if __name__ == "__main__":
+    xw.Book("testproject.xlsm").set_mock_caller()
+    main()
+
+client_id = '<INSERT_ID_HERE>'
+client_secret = '<INSERT_SECRET_HERE>'
+redirect_url = 'https://xero.com/'
+scope = 'offline_access accounting.transactions'
+b64_id_secret = base64.b64encode(bytes(client_id + ':' + client_secret, 'utf-8')).decode('utf-8')
+
+
+def XeroFirstAuth():
+    # 1. Send a user to authorize your app
+    auth_url = ('''https://login.xero.com/identity/connect/authorize?''' +
+                '''response_type=code''' +
+                '''&client_id=''' + client_id +
+                '''&redirect_uri=''' + redirect_url +
+                '''&scope=''' + scope +
+                '''&state=123''')
+    webbrowser.open_new(auth_url)
+
+    # 2. Users are redirected back to you with a code
+    auth_res_url = input('What is the response URL? ')
+    start_number = auth_res_url.find('code=') + len('code=')
+    end_number = auth_res_url.find('&scope')
+    auth_code = auth_res_url[start_number:end_number]
+    print(auth_code)
+    print('\n')
+
+    # 3. Exchange the code
+    exchange_code_url = 'https://identity.xero.com/connect/token'
+    response = requests.post(exchange_code_url,
+                             headers={
+                                 'Authorization': 'Basic ' + b64_id_secret
+                             },
+                             data={
+                                 'grant_type': 'authorization_code',
+                                 'code': auth_code,
+                                 'redirect_uri': redirect_url
+                             })
+    json_response = response.json()
+    print(json_response)
+    print('\n')
+
+    # 4. Receive your tokens
+    return [json_response['access_token'], json_response['refresh_token']]
+
+
+# 5. Check the full set of tenants you've been authorized to access
+def XeroTenants(access_token):
+    connections_url = 'https://api.xero.com/connections'
+    response = requests.get(connections_url,
+                            headers={
+                                'Authorization': 'Bearer ' + access_token,
+                                'Content-Type': 'application/json'
+                            })
+    json_response = response.json()
+    print(json_response)
+
+    for tenants in json_response:
+        json_dict = tenants
+    return json_dict['tenantId']
+
+
+# 6.1 Refreshing access tokens
+def XeroRefreshToken(refresh_token):
+    token_refresh_url = 'https://identity.xero.com/connect/token'
+    response = requests.post(token_refresh_url,
+                             headers={
+                                 'Authorization': 'Basic ' + b64_id_secret,
+                                 'Content-Type': 'application/x-www-form-urlencoded'
+                             },
+                             data={
+                                 'grant_type': 'refresh_token',
+                                 'refresh_token': refresh_token
+                             })
+    json_response = response.json()
+    print(json_response)
+
+    new_refresh_token = json_response['refresh_token']
+    rt_file = open('C:/Users/roypa/Downloads/refresh_token.txt', 'w')
+    rt_file.write(new_refresh_token)
+    rt_file.close()
+
+    return [json_response['access_token'], json_response['refresh_token']]
+
+
+def upload():
+    # Open the Excel workbook
+    wb = xw.books.active
+
+    # Get the Excel table
+    table = wb.sheets[0].api.ListObjects("input")
+
+    # Get the table data
+    data = table.Range.Value
+
+    # Extract the Narration from the first cell
+    narration = data[1][0]  # Assuming the first row is headers and the narration is in the first column
+
+    # Separate the headers and the data
+    headers = data[0]
+    data_rows = data[1:]
+
+    # Convert the data to a pandas DataFrame
+    df = pd.DataFrame(data_rows, columns=headers)
+
+    # Convert DataFrame to desired JSON format
+    json_data = {
+        "Narration": narration,
+        "JournalLines": df[["LineAmount", "AccountCode"]].to_dict(orient="records")
+    }
+
+    import_journals(json_data)
+
+
+# 6.2 Call the API
+def import_journals(json_data1):
+    old_refresh_token = open('C:/Users/roypa/Downloads/refresh_token.txt', 'r').read()
+    new_tokens = XeroRefreshToken(old_refresh_token)
+    xero_tenant_id = XeroTenants(new_tokens[0])
+
+    get_url = 'https://api.xero.com/api.xro/2.0/ManualJournals'
+    response = requests.post(get_url,
+                             headers={
+                                 'Authorization': 'Bearer ' + new_tokens[0],
+                                 'Xero-tenant-id': xero_tenant_id,
+                                 'Accept': 'application/json'
+                             },
+                             json=json_data1)
+    # Check if the request was successful
+    if response.status_code == 200:
+        return "Data successfully imported to Xero."
+    else:
+        return "Error importing data to Xero: " + response.text
+```
+
+Note that in the above script, the journal import is contained within the ```.upload()``` function. This is due to the fact that we have setup our VBA code to call functionS, but not run entire Python scripts. Save the .py file and exit. We have everything setup now.
+
+Go back to the Excel workpaper and populate the table with the accounts and amounts you wish to post - refer Xero's Chart of Accounts for details. Click on the "Upload" button and let the script execute.
+
+![before](assets/manual_journals/manual_journals5.png)
+*Before upload*
+
+![after](assets/manual_journals/manual_journals6.png)
+*After upload*
+
+![journal details](assets/manual_journals/manual_journals7.png)
+*Journal details*
+
+You can see that the journal has been uploaded successfully. All that is left is for the financial accountant/manager to approval the journals.
+
+Once approved, you can see that our manual journal has flowed through to all reports:
+
+![transaction list](assets/manual_journals/manual_journals8.png)
+*Account Transactions*
+
+![journal list](assets/manual_journals/manual_journals9.png)
+*Account Transactions*
+
+![trial balance](assets/manual_journals/manual_journals10.png)
+*Trial Balance*
+
+![balance sheet](assets/manual_journals/manual_journals11.png)
+*Balance sheet*
+
+## Outcome
+
+This solution offers significant scalability, enabling the user to automate the posting of multiple journals simultaneously. The upload process for accountants remains consistent regardless of the number of journals being uploaded. Additionally, this script can be replicated for use across different companies (e.g., subsidiaries) and projects (e.g., project accounting) if required.
+
+Furthermore, the journal table within the Excel frontend spreadsheet can be connected to refreshable Power Query connections. With appropriate configuration and integrated logic and calculations, a large number of journals can be automated, requiring only end-user review and approval. These tools will be further explored in subsequent tutorials.
