@@ -42,7 +42,7 @@ To accomplish our goal, we would need to execute several steps:
 
 **Step 1: Install and configure the xlwings library in Python, along with the xlwings Excel add-in.**
 
-Excel does not have native functionality in regard to running Python scripts. We therefore require an external Python library, xlwings, to facilitate the connection between Excel and Python.
+Excel does not have native functionality in regard to running Python scripts (excluding Microsoft's recent cloud-based "Python in Excel" addition). We therefore require an external Python library, xlwings, to facilitate the connection between Excel and Python.
 
 To install xlwings, activate your virtual environment (refer prior tutorials{insert link here}), and then enter ```pip install xlwings``` in a PowerShell terminal. Should you encounter any additional missing packages during the following process, use the ```pip install``` command to install them. Enter ```pip list``` to check whether you have successfully installed xlwings.
 
