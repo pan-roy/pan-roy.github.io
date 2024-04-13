@@ -287,7 +287,7 @@ with open(csv_file, mode='w', newline='') as file:
 print("CSV file generated successfully:", csv_file)
 ```
 
-You should now observe a newly created CSV file containing our flattened data. Some fields may display repeating values as defined by our script, reflecting a one-to-many relationship (for example, a single balance sheet line item may consist of multiple general ledger accounts).
+You should now see a newly created CSV file containing our flattened data. Some fields may display repeating values as defined by our script, reflecting a one-to-many relationship (for example, a single balance sheet line item may consist of multiple general ledger accounts).
 
 Note that the date extracted is Unix-time (seconds passed since 1 January 1970). We can apply logic in either our script itself or within Excel to convert them into readable dates.
 
