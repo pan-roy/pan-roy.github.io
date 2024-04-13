@@ -23,8 +23,8 @@ Through utilizing POST Manual Journals API calls, we have the capability to auto
 
 Our current objective is to establish an automation pipeline that empowers end-users to transmit journal entry details directly from Excel to Xero, eliminating the requirement to exit Excel or engage with the accounting system, specifically Xero, during this process.
 
-![frontend](assets/manual_journals/manual_journals3.png)
-*Simplified frontend example*
+![front-end](assets/manual_journals/manual_journals3.png)
+*Simplified front-end example*
 
 ## Steps
 
@@ -223,7 +223,7 @@ The resulting dataframe is converted into a dictionary using the ```to_dict()```
 
 **Step 4: Create a VBA macro to trigger Python scripts within Excel.**
 
-We now need a frontend for the end-user to input data. Open up PowerShell or any terminal available (e.g. VS Code or PyCharm) and create a new xlwings Excel project via the command ```xlwings quickstart myproject```. You will need to activate your virtual environment first. You can also change the ```myproject``` to any name you would like.
+We now need a front-end for the end-user to input data. Open up PowerShell or any terminal available (e.g. VS Code or PyCharm) and create a new xlwings Excel project via the command ```xlwings quickstart myproject```. You will need to activate your virtual environment first. You can also change the ```myproject``` to any name you would like.
 
 * Once done, you should see a new folder with an Excel .xlsm workbook and a .py file in it. 
 
@@ -233,8 +233,8 @@ We now need a frontend for the end-user to input data. Open up PowerShell or any
 
 Your workbook should look like this (minus the data):
 
-![frontend](assets/manual_journals/manual_journals3.png)
-*Simplified frontend example*
+![front-end](assets/manual_journals/manual_journals3.png)
+*Simplified front-end example*
 
 Now we need to setup the VBA macro. Press Alt + F11 to open the VBA editor interface.
 
@@ -439,4 +439,4 @@ Once approved, you can see that our manual journal has flowed through to all rep
 
 This solution offers significant scalability, enabling the user to automate the posting of multiple journals simultaneously. The upload process for accountants remains consistent regardless of the number of journals being uploaded. Additionally, this script can be replicated for use across different companies (e.g., subsidiaries) and projects (e.g., project accounting) if required.
 
-Furthermore, the journal table within the Excel frontend spreadsheet can be connected to refreshable Power Query connections. With appropriate configuration and integrated logic and calculations, a large number of journals can be automated, requiring only end-user review and approval. These tools will be further explored in subsequent tutorials.
+Furthermore, the journal table within the Excel front-end spreadsheet can be connected to refreshable Power Query connections. With appropriate configuration and integrated logic and calculations, a large number of journals can be automated, requiring only end-user review and approval. These tools will be further explored in subsequent tutorials.
