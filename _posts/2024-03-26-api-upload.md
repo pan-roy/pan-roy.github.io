@@ -7,7 +7,7 @@ tags: [data upload, xero]     # TAG names should always be lowercase
 
 ## How this impacts you
 
-Instead of unidirectional data retrieval, what if we aimed to automate the process of uploading financial data?
+Instead of mere data retrieval in our previous tutorials, what if we aimed to automate the process of uploading financial data?
 
 Xero does support CSV template upload for manual journals. However, what if we could skip the manual import process entirely?
 
