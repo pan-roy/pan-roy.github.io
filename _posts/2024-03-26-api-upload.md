@@ -1,5 +1,5 @@
 ---
-title: 4. Automated Manual Journalling (RECOMMENDED)
+title: 4. Automated Manual Journaling (RECOMMENDED)
 date: 2024-03-26 21:26:01 +1100
 categories: [Showcase, Data Retrieval and Upload]
 tags: [data upload, xero]     # TAG names should always be lowercase
@@ -12,7 +12,7 @@ Instead of unidirectional data retrieval, what if we aimed to automate the proce
 Xero does support CSV template upload for manual journals. However, what if we could skip the manual import process entirely?
 
 ![manual journal](assets/manual_journals/manual_journals1.png)
-*"Manual" manual journalling*
+*"Manual" manual journaling*
 
 ![import csv](assets/manual_journals/manual_journals2.png)
 *CSV import*
