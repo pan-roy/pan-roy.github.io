@@ -238,7 +238,7 @@ Your workbook should look like this (minus the data):
 
 Now we need to setup the VBA macro. Press Alt + F11 to open the VBA editor interface.
 
-You will notice that there are existing modules created by xlwings. Go to Module 1 and copy the first ```SampleCall()``` sample macro, paste the copy below and change ```.main()``` to the function name you intend on creating later on for the input. In this case, the function will be called ```.upload()```.
+You will notice that there are existing modules created by xlwings. Go to Module 1 and copy the first ```SampleCall()``` sample macro, paste the copy below and change ```.main()``` to any function name you prefer - this will be the name for the upload function in our revised script (to be created below). In this case, the function will be called ```.upload()```.
 
 ```vb
 Public Sub GenerateJSON()
