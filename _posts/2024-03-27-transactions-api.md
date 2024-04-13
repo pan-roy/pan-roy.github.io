@@ -205,4 +205,4 @@ The drawback is the absence of date input parameters, necessitating manual adjus
 
 Similar to what we achieved with trial balances, we now have a functional file for transactions.
 
-Until now, our focus has been solely on extracting information from Xero. However, what if we want to automate data uploads to Xero instead? In our next walkthrough, we'll delve into a practical example involving the automation of manual journal preparation, a crucial task for financial accountants.
+Until now, our focus has been solely on extracting information from Xero. However, what if we want to automate data uploads to Xero instead? In our next walkthrough, we will delve into a practical example involving the automation of manual journal preparation, a crucial task for financial accountants.
