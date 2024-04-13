@@ -1,7 +1,7 @@
 ---
-title: 3. Automated Data Retrieval - Transaction Lists
+title: 3. Automated Data Retrieval - Transaction Listings
 date: 2024-03-27 21:26:01 +1100
-categories: [Showcase, Data Retrieval]
+categories: [Showcase, Data Retrieval and Upload]
 tags: [data retrieval, xero]     # TAG names should always be lowercase
 ---
 

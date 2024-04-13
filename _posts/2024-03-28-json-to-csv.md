@@ -1,11 +1,11 @@
 ---
 title: 2. JSON to CSV Conversion
 date: 2024-03-28 21:26:01 +1100
-categories: [Showcase, Data Retrieval]
+categories: [Showcase, Data Retrieval and Upload]
 tags: [data retrieval, json]     # TAG names should always be lowercase
 ---
 
-## How this impacts you
+## Introduction
 
 In our prior walkthrough {TODO: insert link here}, data extraction from Xero was performed resulting in JSON format files. JSON files employ a hierarchical structure consisting of nested dictionaries, organizing data into key-value pairs, with potential expansion into additional key-value pairs. This inherent structure presents challenges for accountants accustomed to tabular formats such as Excel.
 

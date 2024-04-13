@@ -1,11 +1,11 @@
 ---
 title: 1. Automated Data Retrieval via Xero APIs
 date: 2024-03-29 21:26:01 +1100
-categories: [Showcase, Data Retrieval]
+categories: [Showcase, Data Retrieval and Upload]
 tags: [data retrieval, xero]     # TAG names should always be lowercase
 ---
 
-## How this impacts you
+## Introduction
 
 Accountants typically manually collect data, like transaction lists or financial statements, for analysis. This data is then used for calculations and creating reports or updating the accounting system with journal entries. When dealing with multiple systems, accountants may spend extra time extracting data if there are no custom integrations or connections between the systems.
 
