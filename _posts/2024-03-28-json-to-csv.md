@@ -5,7 +5,7 @@ categories: [Showcase, Data Retrieval and Upload]
 tags: [data retrieval, json]     # TAG names should always be lowercase
 ---
 
-## Introduction
+## How this impacts you
 
 In our prior walkthrough {TODO: insert link here}, data extraction from Xero was performed resulting in JSON format files. JSON files employ a hierarchical structure consisting of nested dictionaries, organizing data into key-value pairs, with potential expansion into additional key-value pairs. This inherent structure presents challenges for accountants accustomed to tabular formats such as Excel.
 
