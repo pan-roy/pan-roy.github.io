@@ -7,9 +7,9 @@ tags: [data upload, xero]     # TAG names should always be lowercase
 
 ## How this impacts you
 
-Instead of mere data retrieval in our previous tutorials, what if we aimed to automate the process of uploading financial data?
+Instead of mere data retrieval in our previous tutorials, what if we aimed to automate the process of manual journaling?
 
-Xero supports CSV template upload for manual journals. However, what if we could skip the manual import process entirely?
+Xero supports CSV template upload for manual journals. However, it still requires end-users to login and manually edit CSV templates or type in the relevant accounts in the journaling interface.
 
 ![manual journal](assets/manual_journals/manual_journals1.png)
 *"Manual" manual journaling*
