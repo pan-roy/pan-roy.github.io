@@ -22,7 +22,7 @@ Automated reporting and analytics rely on having access to input data. Without d
 ![Sample JSON](assets/data_retrieval/data_retrieval4.png)
 *JSON example*
 
-## What needs to be done
+## Goal
 
 Our current objective is to develop a Python script that automates the extraction of financial data from an accounting system and establishes the necessary authentication procedures.
 
@@ -33,7 +33,7 @@ Visit the [_Xero Main_](https://www.xero.com/au/) and [_Xero API_](https://devel
 ![Sample Xero](assets/data_retrieval/data_retrieval3.png)
 *Xero sample company*
 
-## What are the steps required?
+## Steps
 
 **Requirements**: existing Xero account, local Python interpreter, Windows, basic Python knowledge.
 

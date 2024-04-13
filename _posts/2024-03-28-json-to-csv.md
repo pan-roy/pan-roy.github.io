@@ -202,14 +202,14 @@ Upon examination of the top segments of our Xero trial balance, it becomes evide
         }
 ```
 
-## What needs to be done?
+## Goal
 
 Our objective is to transform the JSON data into a tabular format suitable for subsequent analysis. The desired outcome is to present the data in a structured table similar to the following:
 
 ![Sample data](assets/data_retrieval/data_retrieval2.png)
 *Simplified data example*
 
-## What are the steps required?
+## Steps
 
 **Requirements**: local Python interpreter, basic Python knowledge.
 
