@@ -419,7 +419,7 @@ Go back to the Excel workpaper and populate the table with the accounts and amou
 ![journal details](assets/manual_journals/manual_journals7.png)
 *Journal details*
 
-You can see that the journal has been uploaded successfully. All that is left is for the financial accountant/manager to approval the journals.
+You can see that the journal has been uploaded successfully. All that is left is for the financial accountant/manager to approve the journals.
 
 Once approved, you can see that our manual journal has flowed through to all reports:
 
