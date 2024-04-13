@@ -437,6 +437,6 @@ Once approved, you can see that our manual journal has flowed through to all rep
 
 ## Outcome
 
-This solution offers significant scalability, enabling the user to automate the posting of multiple journals simultaneously. The upload process for accountants remains consistent regardless of the number of journals being uploaded. Additionally, this script can be replicated for use across different companies (e.g., subsidiaries) and projects (e.g., project accounting) if required.
+This solution offers significant scalability, enabling the user to automate the posting of multiple journals simultaneously. The upload process for accountants remains consistent regardless of the number of journals being uploaded. Additionally, this script can be replicated for use across different companies (e.g. subsidiaries) and projects (e.g. project accounting) if required.
 
-Furthermore, the journal table within the Excel front-end spreadsheet can be connected to refreshable Power Query connections. With appropriate configuration and integrated logic and calculations, a large number of journals can be automated, requiring only end-user review and approval. These tools will be further explored in subsequent tutorials.
+Furthermore, the journal table within the Excel front-end spreadsheet can be connected to refreshable Power Query connections. With the appropriate configuration and integration of logic / calculations, a large number of journals can be automated, requiring only end-user review and approval. These tools will be further explored in subsequent tutorials.
