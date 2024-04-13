@@ -11,7 +11,7 @@ In previous tutorials{insert link here}, we examined the procedure for extractin
 
 In this guide, we will outline a process similar to that previously documented, but with a focus on retrieving transaction listings instead.
 
-![transactions](assets/transactions/transaction1.png)
+![transactions](assets/transactions/transactions1.png)
 
 ## Goal
 
@@ -20,7 +20,7 @@ Our current objective is to develop two distinct scripts: one to extract transac
 
 It is important to note that Xero does not offer a direct API for account transactions. Instead, Xero provides APIs for journal data extraction, which we will utilize as an alternative method. This approach will enable access to all entries, whether they are manual journals or system-generated transactions such as those related to invoicing. A significant system limitation to consider is the inability to search transactions by date; instead, journal IDs must be used. Xero assigns these IDs sequentially across all transactions. For instance, if the first transaction following 31 January 2024 is assigned ID 481, then to extract transactions for February 2024, one would need to start filtering from journal ID 481 onwards. Further details will be discussed later in this walkthrough.
 
-![transactions api](assets/transactions/transaction2.png)
+![transactions api](assets/transactions/transactions2.png)
 
 ## Steps
 
@@ -46,7 +46,7 @@ Assuming that script authorization has already been granted — if not, please r
     ```
   This is to add additional input parameters so our script can extract transaction items with a journal ID of 481 onwards. ID 481 is used per sighting of the journal listing within Xero - note that all February 2024 entries start from 482.
 
-  ![journal id](assets/transactions/transactions3.png)
+  ![journal id](assets/transactions/transactionss3.png)
 
 For more detailed information, refer Xero's API documentation for manual journals [here](https://developer.xero.com/documentation/api/accounting/manualjournals).
 
@@ -189,14 +189,14 @@ Cell C = ((({Cell B} / 60) / 60) / 24) + date(1970, 1, 1)
 ```
 Cell C in the formulas above will give you the desired date - note that you need to set the cell format to "Short Date" or any other date formats.
 
-![csv output](assets/transactions/transaction4.png)
+![csv output](assets/transactions/transactions4.png)
 
 If you cross-reference the extracted data with the data available within Xero’s Account Transactions or Journal Listing functions, you will find that they correspond accurately without any discrepancies.
 
-![xero check1](assets/transactions/transaction5.png)
+![xero check1](assets/transactions/transactions5.png)
 *Journal List*
 
-![xero check2](assets/transactions/transaction6.png)
+![xero check2](assets/transactions/transactions6.png)
 *Account Transactions*
 
 The drawback is the absence of date input parameters, necessitating manual adjustment of the journal ID number. The end-user is expected to maintain records of the starting and ending journal IDs for each period, especially if they opt to generate reports based on specific time periods.
