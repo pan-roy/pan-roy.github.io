@@ -46,7 +46,7 @@ Assuming that script authorization has already been granted — if not, please r
     ```
   This is to add additional input parameters so our script can extract transaction items with a journal ID of 481 onwards. ID 481 is used per sighting of the journal listing within Xero - note that all February 2024 entries start from 482.
 
-  ![journal id](assets/transactions/transactionss3.png)
+  ![journal id](assets/transactions/transactions3.png)
 
 For more detailed information, refer Xero's API documentation for manual journals [here](https://developer.xero.com/documentation/api/accounting/manualjournals).
 
