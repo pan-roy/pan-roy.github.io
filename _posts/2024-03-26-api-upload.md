@@ -1,5 +1,5 @@
 ---
-title: 4. Automated Manual Journaling (RECOMMENDED)
+title: 4. Automated Manual Journaling
 date: 2024-03-26 21:26:01 +1100
 categories: [Showcase, Data Retrieval and Upload]
 tags: [data upload, xero]     # TAG names should always be lowercase
