@@ -9,7 +9,7 @@ tags: [data upload, xero]     # TAG names should always be lowercase
 
 Instead of mere data retrieval in our previous tutorials, what if we aimed to automate the process of uploading financial data?
 
-Xero does support CSV template upload for manual journals. However, what if we could skip the manual import process entirely?
+Xero supports CSV template upload for manual journals. However, what if we could skip the manual import process entirely?
 
 ![manual journal](assets/manual_journals/manual_journals1.png)
 *"Manual" manual journaling*
@@ -17,7 +17,7 @@ Xero does support CSV template upload for manual journals. However, what if we c
 ![import csv](assets/manual_journals/manual_journals2.png)
 *CSV import*
 
-Through utilizing POST Manual Journals API calls, we have the capability to automate the posting of manual journals directly within Excel. This eliminates the need for accountants to log into their accounting system and manually navigate to the journal entry interface, a process susceptible to human error and time-consuming, particularly when multiple journal entries need uploading simultaneously.
+Through utilizing POST Manual Journals API calls, we have the capability to automate the posting of manual journals directly within Excel. This eliminates the need for accountants to log into their accounting system and manually navigate to the journal entry interface, a process susceptible to human error and time-consuming, particularly when multiple journal entries are uploaded simultaneously.
 
 ## Goal
 
@@ -32,7 +32,7 @@ Our current objective is to establish an automation pipeline that empowers end-u
 
 To accomplish our goal, we would need to execute several steps:
 
-* Install and configure the xlwings library in Python, along with installing the xlwings Excel add-in.
+* Install and configure the xlwings library in Python, along with the xlwings Excel add-in.
 
 * Create a Python script to establish a connection with Xero.
 
@@ -40,9 +40,7 @@ To accomplish our goal, we would need to execute several steps:
 
 * Create a VBA macro to trigger the Python scripts within Excel.
 
-* Configure Power Query to refresh the journal entry table, if journal requires preparation prior to submission.
-
-**Step 1: Install and configure the xlwings library in Python, along with installing the xlwings Excel add-in.**
+**Step 1: Install and configure the xlwings library in Python, along with the xlwings Excel add-in.**
 
 Excel does not have native functionality in regard to running Python scripts. We therefore require an external Python library, xlwings, to facilitate the connection between Excel and Python.
 
@@ -215,11 +213,11 @@ print(result)
 
 **Step 3: Create a Python function to convert tabular data into JSON format.**
 
-Please ensure you have installed the pandas library by running pip install pandas in PowerShell.
+Please ensure you have installed the pandas library by running ```pip install pandas``` in PowerShell.
 
-The ```convert_json()``` function, as described above, utilizes the pandas library to convert tabular Excel data into dataframes. This data can then be manipulated for further processing and upload.
+The ```convert_json()``` function, as described above, utilizes the pandas library to convert tabular Excel data into dataframes. The data can then be manipulated for further processing and upload.
 
-Assuming there is a defined table named "input" in the first sheet of our Excel workpaper, the function extracts the journal entries' relevant information such as account code, journal amount, and description. This data is formatted to meet Xero's manual journal requirements, where the journal is posted in the current open period. The function extracts the description from the first row (excluding headers), and adds the journal amount and account code.
+Assuming there is a defined table named "input" in the first sheet of our Excel workpaper (to be created), the function extracts the journal entries' relevant information such as account code, journal amount, and description. This data is formatted to meet Xero's manual journal requirements, where the journal is posted in the current open period. The function extracts the description from the first row (excluding headers), and adds all the listed journal amounts and account codes.
 
 The resulting dataframe is converted into a dictionary using the ```to_dict()``` method, resembling the structure of JSON files. Finally, this converted data can be passed to the ```import_journals()``` function for upload. Refer to the script for further details.
 
@@ -233,14 +231,14 @@ We now need a frontend for the end-user to input data. Open up PowerShell or any
 
 * Add an VBA form button via the "Developer" tab in the top ribbon - you may need to enable it if absent. If so, on the File tab, go to Options > Customize Ribbon. Under Customize the Ribbon and under Main Tabs, select the Developer check box. Rename your button to "Upload Journal" or any other preferred name.
 
-Your workbook should look like this (without the data):
+Your workbook should look like this (minus the data):
 
 ![frontend](assets/manual_journals/manual_journals3.png)
 *Simplified frontend example*
 
 Now we need to setup the VBA macro. Press Alt + F11 to open the VBA editor interface.
 
-You will notice that there are existing modules created by xlwings. Go to Module 1 and copy the first ```SampleCall()``` sample macro, paste the copy below and change the ```.main()``` to the function name you intend on creating later on for the input. In this case, the function will be called ```.upload()```.
+You will notice that there are existing modules created by xlwings. Go to Module 1 and copy the first ```SampleCall()``` sample macro, paste the copy below and change ```.main()``` to the function name you intend on creating later on for the input. In this case, the function will be called ```.upload()```.
 
 ```vb
 Public Sub GenerateJSON()
@@ -248,9 +246,11 @@ Public Sub GenerateJSON()
     RunPython "import " & mymodule & ";" & mymodule & ".upload()"
 End Sub
 ```
+Go back to the VBA button, right click and "Assign Macro". Choose ```GenerateJSON()```  as per the VBA macro above.
+
 This will direct Excel to search within the .py file previously mentioned for the specified function. Now all we need to is to copy over our script to said .py file. Do not change the .py file's name.
 
-Open the newly created .py file within the xlwings project folder previously ignored. Copy over the contents in our prior Python script into this one. Copy over the dependencies as well. Do not overwrite any pre-existing code in the .py file. The file should resemble the following:
+Open the newly created .py file within the xlwings project folder previously ignored. Copy over the contents in our prior Python script into this one. Copy over the dependencies as well. Do not overwrite any pre-existing code in the .py file. There are minor adjustments required - ```convert_json()``` has been renamed ```upload()``` and an additional call to ```import_journals()``` within the ```upload()``` function has been added. Copy said adjustments by referring the sample script below:
 
 ```python
 import requests
@@ -406,7 +406,7 @@ def import_journals(json_data1):
         return "Error importing data to Xero: " + response.text
 ```
 
-Note that in the above script, the journal import is contained within the ```.upload()``` function. This is due to the fact that we have setup our VBA code to call functionS, but not run entire Python scripts. Save the .py file and exit. We have everything setup now.
+As mentioned above, the journal import is now contained within the ```.upload()``` function. This is due to the fact that we have setup our VBA code to call functions, but not to run entire Python scripts. Save the .py file and exit. The setup is now complete.
 
 Go back to the Excel workpaper and populate the table with the accounts and amounts you wish to post - refer Xero's Chart of Accounts for details. Click on the "Upload" button and let the script execute.
 
