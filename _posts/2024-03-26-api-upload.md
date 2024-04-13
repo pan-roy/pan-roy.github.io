@@ -248,7 +248,7 @@ End Sub
 ```
 Go back to the VBA button, right click and "Assign Macro". Choose ```GenerateJSON()```  as per the VBA macro above.
 
-This will direct Excel to search within the .py file previously mentioned for the specified function. Now all we need to is to copy over our script to said .py file. Do not change the .py file's name.
+This will direct Excel to search within the .py file previously mentioned for the specified function. Now all we need to do is to copy over our script to said .py file. Do not change the .py file's name.
 
 Open the newly created .py file within the xlwings project folder previously ignored. Copy over the contents in our prior Python script into this one. Copy over the dependencies as well. Do not overwrite any pre-existing code in the .py file. There are minor adjustments required - ```convert_json()``` has been renamed ```upload()``` and an additional call to ```import_journals()``` within the ```upload()``` function has been added. Refer the revised script below for the mentioned adjustments:
 
