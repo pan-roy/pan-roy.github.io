@@ -57,7 +57,6 @@ We will now install the xlwings Excel add-in. Close all open Excel instances (if
 Similar to our prior procedures relating to trial balances and transaction listings, we can modify our pre-existing Python script's variables to post manual journals instead. Refer the script below:
 
 <details>
-<summary>Click to expand for code</summary>
 
 ```python
 import requests
@@ -259,7 +258,6 @@ This will direct Excel to search within the .py file previously mentioned for th
 Open the newly created .py file within the xlwings project folder previously ignored. Copy over the contents in our prior Python script into this one. Copy over the dependencies as well. Do not overwrite any pre-existing code in the .py file. There are minor adjustments required - ```convert_json()``` has been renamed ```upload()``` and an additional call to ```import_journals()``` within the ```upload()``` function has been added. Refer the revised script below for the mentioned adjustments:
 
 <details>
-<summary>Click to expand for code</summary>
 
 ```python
 import requests
