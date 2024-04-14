@@ -56,8 +56,6 @@ We will now install the xlwings Excel add-in. Close all open Excel instances (if
 
 Similar to our prior procedures relating to trial balances and transaction listings, we can modify our pre-existing Python script's variables to post manual journals instead. Refer the script below:
 
-<details>
-
 ```python
 import requests
 import webbrowser
@@ -213,9 +211,6 @@ result = import_journals(json_data3)
 print(result)
 ```
 
-</details>  
-&nbsp;
-
 **Step 3: Create a Python function to convert tabular data into JSON format.**
 
 Please ensure you have installed the pandas library by running ```pip install pandas``` in PowerShell.
@@ -256,8 +251,6 @@ Go back to the VBA button, right click and "Assign Macro". Choose ```GenerateJSO
 This will direct Excel to search within the .py file previously mentioned for the specified function. Now all we need to do is to copy over our script to said .py file. Do not change the .py file's name.
 
 Open the newly created .py file within the xlwings project folder previously ignored. Copy over the contents in our prior Python script into this one. Copy over the dependencies as well. Do not overwrite any pre-existing code in the .py file. There are minor adjustments required - ```convert_json()``` has been renamed ```upload()``` and an additional call to ```import_journals()``` within the ```upload()``` function has been added. Refer the revised script below for the mentioned adjustments:
-
-<details>
 
 ```python
 import requests
@@ -412,9 +405,6 @@ def import_journals(json_data1):
     else:
         return "Error importing data to Xero: " + response.text
 ```
-
-</details>
-&nbsp;
 
 As mentioned above, the journal import is now contained within the ```.upload()``` function. This is due to the fact that we have setup our VBA code to call functions, but not to run entire Python scripts. Save the .py file and exit. The setup is now complete.
 
