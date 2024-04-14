@@ -215,6 +215,7 @@ print(result)
 {% endhighlight %}
 
 </details>
+&nbsp;
 
 **Step 3: Create a Python function to convert tabular data into JSON format.**
 
