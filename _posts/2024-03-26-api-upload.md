@@ -56,7 +56,10 @@ We will now install the xlwings Excel add-in. Close all open Excel instances (if
 
 Similar to our prior procedures relating to trial balances and transaction listings, we can modify our pre-existing Python script's variables to post manual journals instead. Refer the script below:
 
-```python
+<details>
+<summary>Click here to expand</summary>
+
+{% highlight python %}
 import requests
 import webbrowser
 import base64
@@ -209,7 +212,9 @@ json_data3 = convert_json()
 print(json_data3)
 result = import_journals(json_data3)
 print(result)
-```
+{% endhighlight %}
+
+</details>
 
 **Step 3: Create a Python function to convert tabular data into JSON format.**
 
