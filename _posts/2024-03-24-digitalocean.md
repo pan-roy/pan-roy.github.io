@@ -17,4 +17,7 @@ Currently there are many solutions available on the market, from AWS EC2 to Azur
 
 It's important to note that in a professional enterprise environment, dedicated IT personnel are responsible for providing tailored solutions. However, the tutorials we've covered so far are primarily aimed at an audience with a blend of IT & accounting skills, focusing on proof of concept rather than large-scale, corporate-wide implementation.
 
-Nevertheless, the principles and knowledge here are highly valuable for optimizing accounting processes and designing prototypes. These resources can also assist IT personnel in constructing more robust solutions tailored to specific corporate needs. In other words, our goal is to effectively bridge the gap between these two worlds of IT and and accounting, facilitating collaboration and enabling the development of solutions that meet the needs of both domains.
+Nevertheless, the principles and knowledge here are highly valuable for optimizing accounting processes and designing prototypes. These resources can also assist IT personnel in constructing more robust solutions tailored to specific corporate needs. In other words, our goal is to effectively bridge the gap between these two worlds of IT and accounting, to facilitate collaboration and to enable the development of solutions that meet the needs of both domains.
+
+## Goal
+
