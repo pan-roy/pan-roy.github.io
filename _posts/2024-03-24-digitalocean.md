@@ -21,4 +21,7 @@ Nevertheless, the principles and knowledge here are highly valuable for optimizi
 
 ## Goal
 
-Our current goal is to create
+Our current goal is to create a virtual private server in the form of DigitalOcean droplets that is capable of running scheduled scripts that can be used for daily snapshot reports (e.g. daily MTD PnL), or also handle end-user requests, such as generating a specific report when the end-user sends an email to a designated address.
+
+## Steps
+
