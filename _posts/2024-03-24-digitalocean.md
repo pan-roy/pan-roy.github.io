@@ -29,7 +29,7 @@ Our current goal is to create a virtual private server in the form of DigitalOce
 
 First we need to register for a DigitalOcean account. Visit [link](https://www.digitalocean.com/) here. Note that this will incur minor costs, with a maximum of AUD $4 per month.
 
-Once you have an account, create a droplet (virtual private server) via the following:
+Once you have an account, create a project first, and then a droplet (virtual private server) via the following:
 
 * Use Sydney as the server location, and Ubuntu Server as the OS. Choose the cheapest basic plan and CPU.
 
@@ -42,7 +42,7 @@ Once you have an account, create a droplet (virtual private server) via the foll
 ![image](assets/digitalocean/do2.png)
 *Select OS & plan*
 
-![cpu](assets/digitalocean/do13.png)
+![cpu](assets/digitalocean/do3.png)
 *Select CPU*
 
 * To ensure secure access, you will need to create an SSH key. Click on the _New SSH Key_ option and follow the guide on the popup window. This will involve Windows PowerShell.
@@ -115,7 +115,7 @@ You should now be able to browse the file structure on both your local computer 
 
 In this example, ```convert_json_pnl.py``` and ```xero_api.py``` from our prior walkthroughs have been uploaded to ```/home/scripts```. These contain scripts for Xero Trial Balance generation and JSON to CSV conversion. **Note that you will also need to port over the refresh_token.txt file used in our authorization process, as Ubuntu Server does not support GUI web browsing. As a result you will need to authenticate the script on your local computer instead.** The Trial Balance script has been modified to add columns regarding report sections (e.g. Revenue or Assets) and report dates. File path references have also been changed to ```/home/scripts```. The script is set to extract the trial balance as at the day before and upload it to the Xata database previously created, with the script to run on a daily basis - we shall schedule this shortly.
 
-**Please also ensure your Xata database table contains the relevant columns to match our script, namely ```report_type, acct_desc, debits, credits, report_date, created_at```. Refer scripts below for details.
+Please also ensure your Xata database table contains the relevant columns to match our script, namely ```report_type, acct_desc, debits, credits, report_date, created_at```. Refer scripts below for details.
 
 ![scripts_transfer](assets/digitalocean/do15.png)
 
@@ -391,7 +391,7 @@ Enter ```crontab -e``` in your terminal to open the cron table (essentially a sc
 ^X Exit       ^R Read File  ^\ Replace    ^U Paste      ^J Justify    ^/ Go To Line M-E Redo
 ```
 
-Move into the table and add addition lines:
+Move to the bottom of the table and add the following lines:
 
 ```
 0 2 * * * python /home/scripts/xero_api.py
@@ -404,3 +404,5 @@ This will schedule the two mentioned scripts to run at the times specified on a 
 ## Outcome:
 
 We should now expect daily snapshots to show up on our database. Data obtained this way could be used for further analysis and reporting. Should you be interested in setting up automated emails or custom reporting, these are all possible via further scripting. We shall explore some of these options in future tutorials.
+
+![excel](assets/digitalocean/do17.png)
