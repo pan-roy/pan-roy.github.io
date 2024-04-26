@@ -359,9 +359,23 @@ where
 
 ![output](assets/digitalocean/do16.png)
 
-We will now schedule both scripts to run at 2:00 AM and 2:05 AM daily. Please refer online documentation for [guides](https://www.hostinger.com/tutorials/how-to-change-timezone-in-ubuntu/#:~:text=To%20do%20so%2C%20open%20Terminal,is%20using%20the%20timedatectl%20command.) on how to set local timezones for Ubuntu.
+We will now schedule both scripts to run at 2:00 AM sequentially. Please refer online documentation for [guides](https://www.hostinger.com/tutorials/how-to-change-timezone-in-ubuntu/#:~:text=To%20do%20so%2C%20open%20Terminal,is%20using%20the%20timedatectl%20command.) on how to set local timezones for Ubuntu.
 
-Enter ```crontab -e``` in your terminal to open the cron table (essentially a scheduled items list). Your output should look like this:
+We will first need to create a bash script to activate our Linux ```reportenv``` virtual environment prior to running Python scripts, otherwise required dependencies will not be available.
+
+```bash
+source /home/scripts/reportenv/bin/activate
+
+python /home/scripts/xero_api.py
+
+python /home/scripts/convert_json_pnl2.py
+
+deactivate
+```
+
+Upload the ```.sh``` file into the ```/home/scripts``` folder via FileZilla as mentioned above.
+
+Once imported, enter ```crontab -e``` in your Linux terminal to open the cron table (essentially a scheduled items list). Your output should look like this:
 
 ```
   GNU nano 6.2                          /tmp/crontab.7bSFF3/crontab                                    # Edit this file to introduce tasks to be run by cron.
@@ -389,14 +403,6 @@ Enter ```crontab -e``` in your terminal to open the cron table (essentially a sc
                                            [ Read 23 lines ]
 ^G Help       ^O Write Out  ^W Where Is   ^K Cut        ^T Execute    ^C Location   M-U Undo
 ^X Exit       ^R Read File  ^\ Replace    ^U Paste      ^J Justify    ^/ Go To Line M-E Redo
-```
-
-Move to the bottom of the table and add the following lines:
-
-```
-0 2 * * * python /home/scripts/xero_api.py
-
-5 2 * * * python /home/scripts/convert_json_pnl2.py
 ```
 
 This will schedule the two mentioned scripts to run at the times specified on a daily basis.
