@@ -375,7 +375,7 @@ deactivate
 
 Upload the ```.sh``` file into the ```/home/scripts``` folder via FileZilla as mentioned above.
 
-Once imported, enter ```crontab -e``` in your Linux terminal to open the cron table (essentially a scheduled items list). Your output should look like this:
+Once imported, enter ```crontab -e``` in your Linux terminal to open the cron table (essentially a scheduled items list). Add an additional ```0 2 * * * /home/scripts/schedule.sh``` line to the end of the table:
 
 ```
   GNU nano 6.2                          /tmp/crontab.7bSFF3/crontab                                    # Edit this file to introduce tasks to be run by cron.
@@ -399,7 +399,7 @@ Once imported, enter ```crontab -e``` in your Linux terminal to open the cron ta
 # 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
 #
 # For more information see the manual pages of crontab(5) and cron(8)
-#
+0 2 * * * /home/scripts/schedule.sh
                                            [ Read 23 lines ]
 ^G Help       ^O Write Out  ^W Where Is   ^K Cut        ^T Execute    ^C Location   M-U Undo
 ^X Exit       ^R Read File  ^\ Replace    ^U Paste      ^J Justify    ^/ Go To Line M-E Redo
