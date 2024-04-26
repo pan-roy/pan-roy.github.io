@@ -1,5 +1,5 @@
 ---
-title: 6. Scheduled Scripting via Virtual Private Server
+title: 6. Overnight Scripts - Reporting, Data Retrieval etc.
 date: 2024-03-25 21:26:01 +1100
 categories: [Showcase, Virtual Private Servers]
 tags: [vps, scripting]     # TAG names should always be lowercase
