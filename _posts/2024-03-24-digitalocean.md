@@ -366,9 +366,9 @@ We will first need to create a bash script to activate our Linux ```reportenv```
 ```bash
 source /home/scripts/reportenv/bin/activate
 
-python /home/scripts/xero_api.py
+/home/scripts/reportenv/bin/python /home/scripts/xero_api.py
 
-python /home/scripts/convert_json_pnl2.py
+/home/scripts/reportenv/bin/python /home/scripts/convert_json_pnl2.py
 
 deactivate
 ```
