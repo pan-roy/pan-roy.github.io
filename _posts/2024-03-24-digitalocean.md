@@ -1,5 +1,5 @@
 ---
-title: 6. Overnight Scripts - Reporting, Data Retrieval etc.
+title: 6. Scripting via Virtual Private Servers
 date: 2024-03-25 21:26:01 +1100
 categories: [Showcase, Virtual Private Servers]
 tags: [vps, scripting]     # TAG names should always be lowercase
@@ -15,19 +15,15 @@ That is why in this walkthrough, we will be exploring virtual private servers.
 
 Currently there are many solutions available on the market, from AWS EC2 to Azure Virtual Machines etc. However, these solutions are expensive and difficult to maintain, especially from our perspective as non-technical hobbyists. As a result, we will opt for a more developer-friendly solution, DigitalOcean, to setup a simple Linux virtual private server for overnight scripting.
 
-It's important to note that in a professional enterprise environment, dedicated IT personnel are responsible for providing tailored solutions. However, the tutorials we've covered so far are primarily aimed at an audience with a blend of IT & accounting skills, focusing on proof of concept rather than large-scale, corporate-wide implementation.
-
-Nevertheless, the principles and knowledge here are highly valuable for optimizing accounting processes and designing prototypes. These resources can also assist IT personnel in constructing more robust solutions tailored to specific corporate needs. In other words, our goal is to effectively bridge the gap between these two worlds of IT and accounting, to facilitate collaboration and to enable the development of solutions that meet the needs of both domains.
-
 ## Goal
 
 Our current goal is to create a virtual private server in the form of DigitalOcean droplets that is capable of running scheduled scripts that can be used for daily snapshot reports (e.g. daily trial balances), or also handle end-user requests, such as generating a specific report when the end-user sends an email to a designated address etc.
 
 ## Steps
 
-**Requirements**: DigitalOcean monthly subscription (AUD $4 per month), database management client, Python, SQL, Linux command line.
+**Requirements**: DigitalOcean monthly subscription (AUD $4 per month), database management client (e.g. DBeaver), Python, SQL, Linux command line basic knowledge.
 
-First we need to register for a DigitalOcean account. Visit [link](https://www.digitalocean.com/) here. Note that this will incur minor costs, with a maximum of AUD $4 per month.
+First we need to register for a DigitalOcean account. Visit the [link](https://www.digitalocean.com/) here. Note that this will incur minor costs, with a maximum of AUD $4 per month.
 
 Once you have an account, create a project first, and then a droplet (virtual private server) via the following:
 
@@ -332,7 +328,7 @@ conn.close()
 </details>
 &nbsp;
 
-Navigate back to your PowerShell terminal and install the relevant database dependencies used in our scripts via ```pip install psycopg2-binary```.
+Navigate back to your PowerShell terminal to access the Ubuntu Server VPS and install the relevant database dependencies used in our scripts via ```pip install psycopg2-binary```.
 
 Navigate to the ```/home/scripts``` folder and then enter ```python xero_api.py``` followed by ```python convert_json_pnl2.py```. Note that you may have different file names.
 

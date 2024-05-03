@@ -7,7 +7,7 @@ tags: [data retrieval, json]     # TAG names should always be lowercase
 
 ## How this impacts you
 
-In our prior walkthrough {TODO: insert link here}, data extraction from Xero was performed resulting in JSON format files. JSON files employ a hierarchical structure consisting of nested dictionaries, organizing data into key-value pairs, with potential expansion into additional key-value pairs. This inherent structure presents challenges for accountants accustomed to tabular formats such as Excel.
+In our prior [walkthrough](https://www.roypan.cc/posts/trial-balance/), data extraction from Xero was performed resulting in JSON format files. JSON files employ a hierarchical structure consisting of nested dictionaries, organizing data into key-value pairs, with potential expansion into additional key-value pairs. This inherent structure presents challenges for accountants accustomed to tabular formats such as Excel.
 
 Upon examination of the top segments of our Xero trial balance, it becomes evident that data is organized within nested dictionaries. To facilitate usability, it is imperative to normalize or flatten the JSON data structure.
 ```json
@@ -211,7 +211,7 @@ Our objective is to transform the JSON data into a tabular format suitable for s
 
 ## Steps
 
-**Requirements**: local Python interpreter, basic Python knowledge.
+**Requirements**: Python
 
 JSON files require examination on a case-by-case basis, though the overall method will be the same.
 
@@ -221,7 +221,7 @@ We will navigate to 1st level ```"Reports"```, 2nd level  ```"Rows"```, 3rd leve
 
 * Therefore, the solution would be to loop through each item at the 4th level ```"Cells"``` and extract all ```"Value"``` values.
 
-* However, note that at the 3rd level ```"Rows"```, the first item where ```"RowType": "Header"``` lies does not contain a ```"Rows"``` key at he 4th level - it does contain our headers though we will ignore them in this demonstration. As a result, we will need to introduce an ```IF``` logic check to exclude this header section.
+* However, note that at the 3rd level ```"Rows"```, the first item where ```"RowType": "Header"``` lies does not contain a ```"Rows"``` key at the 4th level - it does contain our headers though we will ignore them in this demonstration. As a result, we will need to introduce an ```IF``` logic check to exclude this header section.
 
 * We can then store all values within a Python list via an ```append()``` method, and write all rows to a blank CSV file.
 
@@ -271,4 +271,4 @@ If we compare the CSV output directly with Xero's Trial Balance function, you wi
 
 The transformed tabular data offers versatile integration options, such as direct incorporation into Excel workpapers or backup storage in a corporate network drive. From this point, various possibilities emerge, including automated reporting snapshots, self-refreshing Tableau dashboards, and centralized data repositories. 
 
-In our next example, we will apply the acquired knowledge to a different scenario, focusing on extracting transaction listings [TODO: provide hyperlink].
+In our next example, we will apply the acquired knowledge to a different scenario, focusing on extracting [transaction listings](https://www.roypan.cc/posts/transactions-api/).

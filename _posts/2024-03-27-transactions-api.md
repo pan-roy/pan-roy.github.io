@@ -7,7 +7,7 @@ tags: [data retrieval, xero]     # TAG names should always be lowercase
 
 ## How this impacts you
 
-In previous tutorials{insert link here}, we examined the procedure for extracting trial balances from Xero. However, accountants may require more detailed data, such as the individual debits and credits that constitute these balances. Accessing this detailed data allows accountants to deliver in-depth variance analyses and pinpoint causes of balance movements.
+In previous [tutorials](https://www.roypan.cc/posts/trial-balance/), we examined the procedure for extracting trial balances from Xero. However, accountants may require more detailed data, such as the individual debits and credits that constitute these balances. Accessing this detailed data allows accountants to deliver in-depth variance analyses and pinpoint causes of balance movements.
 
 In this guide, we will outline a process similar to those previously documented, but with a focus on retrieving transaction listings instead.
 
@@ -25,9 +25,9 @@ For Xero, a significant system limitation to consider is the inability to search
 
 ## Steps
 
-**Requirements**: local Python interpreter, basic Python knowledge.
+**Requirements**: Python.
 
-Assuming that script authorization has already been granted — if not, please refer to this walkthrough{insert link here} — we simply need to adjust the ```scope``` variable and the endpoint URL. Additionally, this script will include a section on parameters, which differs from our trial balance example where the date was appended to the end of the URL.
+Assuming that script authorization has already been granted - if not, please refer to our trial balance [walkthrough](https://www.roypan.cc/posts/trial-balance/) - we simply need to adjust the ```scope``` variable and the endpoint URL. Additionally, this script will include a section on parameters, which differs from our trial balance example where the date was appended to the end of the URL.
 
 For more detailed information, refer Xero's API documentation for journals [here](https://developer.xero.com/documentation/api/accounting/manualjournals).
 
@@ -317,4 +317,4 @@ As previously mentioned, the drawback is the absence of date input parameters, n
 
 Similar to what we achieved with trial balances, we now have a functional file for transactions.
 
-Until now, our focus has been solely on extracting information from Xero. However, what if we want to automate data uploads to Xero instead? In our next walkthrough, we will delve into a practical example involving the automation of manual journalling, a crucial task for financial accountants.
+Until now, our focus has been solely on extracting information from Xero. However, what if we want to automate data uploads to Xero instead? In our [next walkthrough](https://www.roypan.cc/posts/api-upload/), we will delve into a practical example involving the automation of manual journalling, a crucial task for financial accountants.

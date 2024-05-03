@@ -1,5 +1,5 @@
 ---
-title: 4. Automated Manual Journaling
+title: 4. Automated Journaling
 date: 2024-03-26 21:26:01 +1100
 categories: [Showcase, Data Retrieval and Upload]
 tags: [data upload, xero]     # TAG names should always be lowercase
@@ -28,7 +28,7 @@ Our current objective is to establish an automation pipeline that empowers end-u
 
 ## Steps
 
-**Requirements**: local Python interpreter, Excel, basic Python knowledge.
+**Requirements**: Python, Excel.
 
 To accomplish our goal, we would need to execute several steps:
 
@@ -44,7 +44,7 @@ To accomplish our goal, we would need to execute several steps:
 
 Excel does not have native functionality in regard to running Python scripts (excluding Microsoft's recent cloud-based "Python in Excel" addition). We therefore require an external Python library, xlwings, to facilitate the connection between Excel and Python.
 
-To install xlwings, activate your virtual environment (refer prior tutorials{insert link here}), and then enter ```pip install xlwings``` in a PowerShell terminal. Should you encounter any additional missing packages during the following process, use the ```pip install``` command to install them. Enter ```pip list``` to check whether you have successfully installed xlwings.
+To install xlwings, activate your virtual environment (refer prior [tutorials](https://www.roypan.cc/posts/trial-balance/)), and then enter ```pip install xlwings``` in a PowerShell terminal. Should you encounter any additional missing packages during the following process, use the ```pip install``` command to install them. Enter ```pip list``` to check whether you have successfully installed xlwings.
 
 For detailed documentation on xlwings, please visit [here](https://docs.xlwings.org/en/latest/).
 
@@ -229,11 +229,11 @@ The resulting dataframe is converted into a dictionary using the ```to_dict()```
 
 **Step 4: Create a VBA macro to trigger Python scripts within Excel.**
 
-We now need a front-end for the end-user to input data. Open up PowerShell or any terminal available (e.g. VS Code or PyCharm) and create a new xlwings Excel project via the command ```xlwings quickstart myproject```. You will need to activate your virtual environment first. You can also change the ```myproject``` to any name you would like.
+We now need a front-end for the end-user to input data. Open up PowerShell or any terminal available (e.g. VS Code or PyCharm) and create a new xlwings Excel project via the command ```xlwings quickstart myproject```. You will need to activate your virtual environment first. You can also change ```myproject``` to any name you like.
 
-* Once done, you should see a new folder with an Excel .xlsm workbook and a .py file in it. 
+* Once done, you should see a new folder with an Excel ```.xlsm``` workbook and a ```.py``` file in it. 
 
-* Ignore the .py file for now and open the Excel file. Create a table and assign a defined name for the table "input".
+* Ignore the ```.py``` file for now and open the Excel file. Create a table and assign a defined name for the table "input".
 
 * Add an VBA form button via the "Developer" tab in the top ribbon - you may need to enable it if absent. If so, on the File tab, go to Options > Customize Ribbon. Under Customize the Ribbon and under Main Tabs, select the Developer check box. Rename your button to "Upload Journal" or any other preferred name.
 
@@ -242,9 +242,9 @@ Your workbook should look like this (minus the data):
 ![front-end](assets/manual_journals/manual_journals3.png)
 *Simplified front-end example*
 
-Now we need to setup the VBA macro. Press Alt + F11 to open the VBA editor interface.
+Now we need to setup the VBA macro. Press ```Alt + F11``` to open the VBA editor interface.
 
-You will notice that there are existing modules created by xlwings. Go to Module 1 and copy the first ```SampleCall()``` sample macro, paste the copy below and change ```.main()``` to any function name you prefer - this will be the name for the upload function in our revised script (to be created below). In this case, the function will be called ```.upload()```.
+You will notice that there are existing modules created by xlwings. Go to Module 1 and copy the first ```SampleCall()``` sample macro, paste the copy below and change ```.main()``` to any function name you prefer - this will be the name for the upload function in our revised Python script (to be created below). In this case, the Python function will be called ```.upload()```.
 
 ```vb
 Public Sub GenerateJSON()
@@ -252,11 +252,11 @@ Public Sub GenerateJSON()
     RunPython "import " & mymodule & ";" & mymodule & ".upload()"
 End Sub
 ```
-Go back to the VBA button, right click and "Assign Macro". Choose ```GenerateJSON()```  as per the VBA macro above.
+Go back to the VBA button, right click and "Assign Macro". Choose ```GenerateJSON()```  as per the VBA macro name above.
 
-This will direct Excel to search within the .py file previously mentioned for the specified function. Now all we need to do is to copy over our script to said .py file. Do not change the .py file's name.
+This will direct Excel to search within the ```.py``` file previously mentioned for the specified function. Now all we need to do is to copy over our script to said ```.py``` file. Do not change the ```.py``` file's name.
 
-Open the newly created .py file within the xlwings project folder previously ignored. Copy over the contents in our prior Python script into this one. Copy over the dependencies as well. Do not overwrite any pre-existing code in the .py file. There are minor adjustments required - ```convert_json()``` has been renamed ```upload()``` and an additional call to ```import_journals()``` within the ```upload()``` function has been added. Refer the revised script below for the mentioned adjustments:
+Open the newly created .py file within the xlwings project folder previously ignored. Copy over the contents in our prior Python script into this one (refer below). Copy over the dependencies as well. **Do not overwrite any pre-existing code in the ```.py``` file.** There are minor adjustments required - ```convert_json()``` has been renamed ```upload()``` and an additional call to ```import_journals()``` within the ```upload()``` function has been added. Refer the revised script below for the mentioned adjustments:
 
 ```python
 import requests
@@ -412,7 +412,7 @@ def import_journals(json_data1):
         return "Error importing data to Xero: " + response.text
 ```
 
-As mentioned above, the journal import is now contained within the ```.upload()``` function. This is due to the fact that we have setup our VBA code to call functions, but not to run entire Python scripts. Save the .py file and exit. The setup is now complete.
+As mentioned above, the journal import is now contained within the ```.upload()``` function. This is due to the fact that we have setup our VBA code to call functions, but not to run entire Python scripts. Save the ```.py``` file and exit. The setup is now complete.
 
 Go back to the Excel workpaper and populate the table with the accounts and amounts you wish to post - refer Xero's Chart of Accounts for details. Click on the "Upload" button and let the script execute.
 
@@ -445,4 +445,4 @@ Once approved, you can see that our manual journal has flowed through to all rep
 
 This solution offers significant scalability, enabling the user to automate the posting of multiple journals simultaneously. The upload process for accountants remains consistent regardless of the number of journals being uploaded. Additionally, this script can be replicated for use across different companies (e.g. subsidiaries) and projects (e.g. project accounting) if required.
 
-Furthermore, the journal table within the Excel front-end spreadsheet can be connected to refreshable Power Query connections. With the appropriate configuration and integration of logic / calculations, a large number of journals can be automated, requiring only end-user review and approval. These tools will be further explored in subsequent tutorials.
+Furthermore, the journal table within the Excel frontend spreadsheet can be connected to refreshable Power Query connections. With the appropriate configuration and logic design, a large number of journals can be automated, requiring only end-user review and approval. These tools will be further explored in subsequent tutorials.
