@@ -39,7 +39,7 @@ Visit the [_Xero Main_](https://www.xero.com/au/) and [_Xero API_](https://devel
 
 Assuming you have registered a Xero account, either with the default demo company or an actual company, our first step is to create a long-term connection between our local computer and Xero.
 
-Click [here](https://www.youtube.com/watch?v=t0DgAMgN8VY&list=WL&index=3) should you be interested in a detailed video tutorial (courtesy of [Edgecate](https://www.youtube.com/@edgecate)).
+Click [here](https://www.youtube.com/watch?v=t0DgAMgN8VY&list=WL&index=3) should you be interested in a detailed video tutorial (Source: [Edgecate](https://www.youtube.com/@edgecate)).
 
 For a simplified walkthrough, please refer the following instructions.
 
