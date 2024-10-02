@@ -5,7 +5,7 @@ categories: [Showcase, Virtual Private Servers]
 tags: [vps, scripting]     # TAG names should always be lowercase
 ---
 
-## How this impacts you
+## Background:
 
 In our previous walkthroughs, we've focused on running scripts locally. However, what if we wanted to schedule scripts to run overnight, ensuring reports and data processing are complete first thing in the morning? What if we wanted to have a centralized repository of our scripts to avoid version control issues where different end-users have different script versions?
 
