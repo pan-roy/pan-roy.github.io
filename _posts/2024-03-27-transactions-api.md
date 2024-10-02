@@ -5,7 +5,7 @@ categories: [Showcase, Data Retrieval and Upload]
 tags: [data retrieval, xero]     # TAG names should always be lowercase
 ---
 
-## How this impacts you
+## Background:
 
 In previous [tutorials](https://www.roypan.cc/posts/trial-balance/), we examined the procedure for extracting trial balances from Xero. However, accountants may require more detailed data, such as the individual debits and credits that constitute these balances. Accessing this detailed data allows accountants to deliver in-depth variance analyses and pinpoint causes of balance movements.
 
