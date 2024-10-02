@@ -5,7 +5,7 @@ categories: [Showcase, Data Retrieval and Upload]
 tags: [data retrieval, xero]     # TAG names should always be lowercase
 ---
 
-## How this impacts you
+## Background:
 
 Accountants typically gather data manually, such as transaction lists or trial balances, to conduct analysis. This information is subsequently utilized for computations and the generation of reports, or for updating the accounting system through journal entries. In cases where multiple systems are involved, accountants may require additional time to extract data, particularly if there are no customized integrations or connections between the systems.
 
