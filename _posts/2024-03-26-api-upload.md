@@ -5,7 +5,7 @@ categories: [Showcase, Data Retrieval and Upload]
 tags: [data upload, xero]     # TAG names should always be lowercase
 ---
 
-## How this impacts you
+## Background:
 
 Instead of mere data retrieval in our previous tutorials, what if we aimed to automate the process of manual journaling?
 
