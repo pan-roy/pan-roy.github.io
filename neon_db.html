@@ -32,7 +32,7 @@
     };
 
     myConnector.getData = function (table, doneCallback) {
-      fetch("https://https://faas-syd1-c274eac6.doserverless.co/api/v1/web/fn-271b5d5b-c1b8-47f3-939b-678abacfd365/default/tableau/api/comments")
+      fetch("https://faas-syd1-c274eac6.doserverless.co/api/v1/web/fn-271b5d5b-c1b8-47f3-939b-678abacfd365/default/tableau/api/comments")
         .then(response => response.json())
         .then(data => {
           table.appendRows(data);
