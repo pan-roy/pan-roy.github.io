@@ -1,49 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://connectors.tableau.com/libs/tableauwdc-2.3.latest.js"></script>
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <title>NeonDB WDC</title>
+
+  <!-- Latest Web Data Connector library -->
+  <script src="https://connectors.tableau.com/libs/tableauwdc-2.4.latest.js"></script>
 </head>
 
 <body>
-<button id="load">Load Data</button>
+  <h3>NeonDB Comments Connector</h3>
+  <button id="submitButton">Load Data</button>
 
-<script>
+  <script type="text/javascript">
+    // define connector
+    var myConnector = tableau.makeConnector();
 
-var connector = tableau.makeConnector();
+    myConnector.getSchema = function (schemaCallback) {
+      var cols = [
+        { id: "id", dataType: tableau.dataTypeEnum.int },
+        { id: "comment", dataType: tableau.dataTypeEnum.string }
+      ];
 
-connector.getSchema = function(schemaCallback) {
+      var tableSchema = {
+        id: "comments",
+        alias: "Comments from NeonDB",
+        columns: cols
+      };
 
-  var cols = [
-    { id: "id", dataType: tableau.dataTypeEnum.int },
-    { id: "header", dataType: tableau.dataTypeEnum.string }
-  ];
+      schemaCallback([tableSchema]);
+    };
 
-  var tableSchema = {
-    id: "comments",
-    columns: cols
-  };
+    myConnector.getData = function (table, doneCallback) {
+      fetch("https://https://faas-syd1-c274eac6.doserverless.co/api/v1/web/fn-271b5d5b-c1b8-47f3-939b-678abacfd365/default/tableau/api/comments")
+        .then(response => response.json())
+        .then(data => {
+          table.appendRows(data);
+          doneCallback();
+        })
+        .catch(err => {
+          console.error("Fetch error:", err);
+          doneCallback();
+        });
+    };
 
-  schemaCallback([tableSchema]);
-};
+    // register the connector
+    tableau.registerConnector(myConnector);
 
-connector.getData = function(table, doneCallback) {
-
-  fetch("https://https://faas-syd1-c274eac6.doserverless.co/api/v1/web/fn-271b5d5b-c1b8-47f3-939b-678abacfd365/default/tableau/api/comments")
-    .then(response => response.json())
-    .then(data => {
-
-      table.appendRows(data);
-      doneCallback();
+    // attach event listener
+    document.getElementById("submitButton").addEventListener("click", function () {
+      // This tells Tableau to run getSchema and getData
+      tableau.connectionName = "NeonDB Comments";
+      tableau.submit();
     });
-};
 
-tableau.registerConnector(connector);
-
-document.getElementById("load").onclick = function () {
-  tableau.connectionName = "NeonDB Data";
-  tableau.submitConnector();
-};
-
-</script>
+  </script>
 </body>
 </html>
