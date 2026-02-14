@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://connectors.tableau.com/libs/tableauwdc-2.3.latest.js"></script>
+</head>
+
+<body>
+<button id="load">Load Data</button>
+
+<script>
+
+var connector = tableau.makeConnector();
+
+connector.getSchema = function(schemaCallback) {
+
+  var cols = [
+    { id: "id", dataType: tableau.dataTypeEnum.int },
+    { id: "header", dataType: tableau.dataTypeEnum.string }
+  ];
+
+  var tableSchema = {
+    id: "comments",
+    columns: cols
+  };
+
+  schemaCallback([tableSchema]);
+};
+
+connector.getData = function(table, doneCallback) {
+
+  fetch("https://https://faas-syd1-c274eac6.doserverless.co/api/v1/web/fn-271b5d5b-c1b8-47f3-939b-678abacfd365/default/tableau/api/comments")
+    .then(response => response.json())
+    .then(data => {
+
+      table.appendRows(data);
+      doneCallback();
+    });
+};
+
+tableau.registerConnector(connector);
+
+document.getElementById("load").onclick = function () {
+  tableau.connectionName = "NeonDB Data";
+  tableau.submitConnector();
+};
+
+</script>
+</body>
+</html>
